@@ -1,3 +1,82 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "Lush green field under a clear sky, representing agriculture",
+      "imageUrl": "https://images.unsplash.com/photo-1523829949029-7e28e82aa713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncmVlbiUyMGZpZWxkfGVufDB8fHx8MTc2OTY2MTA3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "green field"
+    },
+    {
+      "id": "about-hero",
+      "description": "A well-lit, modern library or study area, symbolizing knowledge and publishing",
+      "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsaWJyYXJ5JTIwc3R1ZHl8ZW58MHx8fHwxNzY5NTc3MDY1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "library study"
+    },
+    {
+      "id": "journal1",
+      "description": "Close up of an ant on a green leaf",
+      "imageUrl": "https://images.unsplash.com/photo-1670745799697-bcf44291b4ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhbnQlMjBsZWFmfGVufDB8fHx8MTc2OTY2MTA3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ant leaf"
+    },
+    {
+      "id": "journal2",
+      "description": "A field of wheat under the sun",
+      "imageUrl": "https://images.unsplash.com/photo-1595976281013-8024ecc02575?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3aGVhdCUyMGZpZWxkfGVufDB8fHx8MTc2OTU3OTU1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wheat field"
+    },
+    {
+      "id": "journal3",
+      "description": "A ladybug on a green stem, representing biological control",
+      "imageUrl": "https://images.unsplash.com/photo-1758244016372-427055fd6efd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYWR5YnVnJTIwc3RlbXxlbnwwfHx8fDE3Njk2NjEwNzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ladybug stem"
+    },
+    {
+      "id": "journal4",
+      "description": "A scientist examining a DNA double helix model",
+      "imageUrl": "https://images.unsplash.com/photo-1580795479025-93d13fd9aa6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzY2llbnRpc3QlMjBkbmF8ZW58MHx8fHwxNzY5NjYxMDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "scientist dna"
+    },
+    {
+      "id": "journal5",
+      "description": "A detailed photograph of a beetle on a wooden surface",
+      "imageUrl": "https://images.unsplash.com/photo-1633331102754-6dbadc47bb85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiZWV0bGUlMjB3b29kfGVufDB8fHx8MTc2OTY2MTA3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "beetle wood"
+    },
+    {
+      "id": "book1",
+      "description": "The cover of a book about plant science",
+      "imageUrl": "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book2",
+      "description": "The cover of a book about insects and entomology",
+      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book3",
+      "description": "The cover of a book about sustainable farming",
+      "imageUrl": "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book4",
+      "description": "The cover of a book on bioinformatics",
+      "imageUrl": "https://images.unsplash.com/photo-1528459105426-b9548367069b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book5",
+      "description": "The cover of a book about crop protection",
+      "imageUrl": "https://images.unsplash.com/photo-1528459105426-b9548367069b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book6",
+      "description": "The cover of a popular science book",
+      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    }
+  ]
 }
