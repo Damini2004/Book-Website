@@ -1,6 +1,15 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 export default function PrivacyPage() {
+  const [date, setDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    setDate(new Date().toLocaleDateString());
+  }, []);
+
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 py-16 lg:py-24">
@@ -25,7 +34,7 @@ export default function PrivacyPage() {
                 <CardTitle className="font-headline text-2xl">Your Rights</CardTitle>
             </CardHeader>
             <CardContent>
-                <p className="text-muted-foreground">You have the right to access, correct, or delete your personal information at any time. Please contact us for assistance. This policy is subject to change, and any updates will be posted on this page. Last updated: {new Date().toLocaleDateString()}.</p>
+                <p className="text-muted-foreground">You have the right to access, correct, or delete your personal information at any time. Please contact us for assistance. This policy is subject to change, and any updates will be posted on this page. Last updated: {date ? date : ""}.</p>
             </CardContent>
         </Card>
       </div>
