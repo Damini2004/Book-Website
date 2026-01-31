@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { journals } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { CheckCircle, Book, Microscope, Users, Goal, Rocket, Phone, Mail, MapPin } from "lucide-react";
+import { CheckCircle, Book, Users, Goal, Rocket, Phone, Mail, MapPin, Globe } from "lucide-react";
 
 export default function AboutPage() {
   const heroImage = PlaceHolderImages.find((p) => p.id === "about-hero");
