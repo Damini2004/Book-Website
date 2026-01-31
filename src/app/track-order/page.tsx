@@ -25,13 +25,13 @@ export default function TrackOrderPage() {
             <form className="space-y-4">
               <div>
                 <Label htmlFor="order-number">Order Number</Label>
-                <Input id="order-number" placeholder="e.g., MPH-12345" />
+                <Input id="order-number" placeholder="e.g., MPH-12345" suppressHydrationWarning />
               </div>
               <div>
                 <Label htmlFor="email">Email Address</Label>
-                <Input type="email" id="email" placeholder="you@example.com" />
+                <Input type="email" id="email" placeholder="you@example.com" suppressHydrationWarning />
               </div>
-              <Button type="submit" className="w-full">Track Order</Button>
+              <Button type="submit" className="w-full" suppressHydrationWarning>Track Order</Button>
             </form>
           </CardContent>
         </Card>

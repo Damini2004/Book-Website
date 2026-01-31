@@ -13,7 +13,7 @@ import { Loader2, FileText, UploadCloud, AlertCircle } from "lucide-react";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full">
+    <Button type="submit" disabled={pending} className="w-full" suppressHydrationWarning>
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating...
@@ -71,6 +71,7 @@ export function BookSummaryGenerator() {
                             onChange={handleFileChange}
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             accept=".txt,.md,.pdf,.docx"
+                            suppressHydrationWarning
                         />
                         <div className="border-2 border-dashed border-muted-foreground/50 rounded-lg p-8 text-center bg-secondary/30">
                            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
