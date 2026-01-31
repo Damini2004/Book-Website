@@ -21,8 +21,8 @@ export default function Footer() {
             </p>
             <h4 className="font-semibold mb-2">New issues &amp; new books (monthly)</h4>
             <form className="flex gap-2">
-              <Input type="email" placeholder="Your email address" className="bg-background"/>
-              <Button type="submit">Subscribe</Button>
+              <Input type="email" placeholder="Your email address" className="bg-background" suppressHydrationWarning/>
+              <Button type="submit" suppressHydrationWarning>Subscribe</Button>
             </form>
           </div>
           {footerLinks.map((column) => (
@@ -48,7 +48,7 @@ export default function Footer() {
       </div>
       <div className="border-t">
         <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Malhotra Publishing House (MPH). All rights reserved.</p>
+          <p suppressHydrationWarning>© {new Date().getFullYear()} Malhotra Publishing House (MPH). All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             {socialLinks.map((social) => (
               <a
