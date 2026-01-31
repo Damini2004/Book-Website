@@ -11,10 +11,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/lib/data";
 import { MphLogo } from "@/components/icons";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,34 +91,39 @@ export default function Header() {
                       <MphLogo className="h-8 w-auto text-primary" />
                       <span className="font-headline font-bold text-lg">MPH</span>
                     </Link>
-                  <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} suppressHydrationWarning>
                     <X className="h-6 w-6" />
                     <span className="sr-only">Close menu</span>
                   </Button>
                 </div>
-                <nav className="flex flex-col space-y-4">
+                <nav className="flex flex-col space-y-2">
                   {navLinks.map((link) => (
                      <div key={link.href}>
                       {link.children ? (
-                         <>
-                          <span className="font-semibold text-lg px-4 py-2">{link.label}</span>
-                           <div className="flex flex-col space-y-2 pl-8">
-                          {link.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              className="text-muted-foreground hover:text-primary transition-colors py-2 text-lg"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                          </div>
-                        </>
+                         <Collapsible>
+                           <CollapsibleTrigger className="flex justify-between items-center w-full font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md">
+                             <span>{link.label}</span>
+                             <ChevronDown className="h-5 w-5 transition-transform duration-200 data-[state=open]:rotate-180" />
+                           </CollapsibleTrigger>
+                           <CollapsibleContent>
+                             <div className="flex flex-col space-y-2 py-2 pl-8">
+                               {link.children.map((child) => (
+                                 <Link
+                                   key={child.href}
+                                   href={child.href}
+                                   className="text-muted-foreground hover:text-primary transition-colors py-2 text-lg"
+                                   onClick={() => setIsMobileMenuOpen(false)}
+                                 >
+                                   {child.label}
+                                 </Link>
+                               ))}
+                             </div>
+                           </CollapsibleContent>
+                         </Collapsible>
                       ) : (
                         <Link
                           href={link.href}
-                          className="font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md"
+                          className="block font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {link.label}
@@ -116,7 +131,7 @@ export default function Header() {
                       )}
                     </div>
                   ))}
-                  <div className="border-t pt-6 flex flex-col gap-4">
+                  <div className="border-t pt-6 flex flex-col gap-4 mt-4">
                     <Button variant="outline" asChild>
                       <Link href="/books" onClick={() => setIsMobileMenuOpen(false)}>Shop Books</Link>
                     </Button>
