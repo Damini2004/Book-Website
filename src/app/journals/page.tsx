@@ -51,7 +51,7 @@ export default function JournalsPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-6">{journal.longDescription}</p>
-                      <Button asChild>
+                      <Button asChild suppressHydrationWarning>
                         <a href="#" target="_blank" rel="noopener noreferrer">
                           Visit Journal Website
                         </a>
@@ -71,7 +71,7 @@ export default function JournalsPage() {
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground mb-4">All our journals are hosted on dedicated websites where you can find submission guidelines, editorial boards, and published articles.</p>
-                    <Button variant="outline">Explore All Sites</Button>
+                    <Button variant="outline" suppressHydrationWarning>Explore All Sites</Button>
                 </CardContent>
             </Card>
             <Card id="cfp" className="bg-accent/5">
@@ -80,7 +80,7 @@ export default function JournalsPage() {
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground mb-4">We welcome high-quality submissions for our upcoming issues. Special issues may have specific calls for papers. Please visit individual journal sites for more details.</p>
-                     <Button variant="outline" asChild><Link href="/book-proposal">Submission Guidelines</Link></Button>
+                     <Button variant="outline" asChild suppressHydrationWarning><Link href="/book-proposal">Submission Guidelines</Link></Button>
                 </CardContent>
             </Card>
         </div>
