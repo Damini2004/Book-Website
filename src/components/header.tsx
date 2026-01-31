@@ -45,7 +45,7 @@ export default function Header() {
               link.children ? (
                 <DropdownMenu key={link.href}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center gap-1">
+                    <Button variant="ghost" className="flex items-center gap-1" suppressHydrationWarning>
                       {link.label} <ChevronDown className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
@@ -83,9 +83,7 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-full sm:w-80">
-                <SheetTitle>
-                  <span className="sr-only">Menu</span>
-                </SheetTitle>
+                <SheetTitle className="sr-only">Menu</SheetTitle>
                 <div className="flex justify-between items-center mb-8">
                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
                       <MphLogo className="h-8 w-auto text-primary" />

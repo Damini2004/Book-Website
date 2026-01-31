@@ -99,26 +99,26 @@ export function BookProposalForm() {
         {renderSection("1. Author / Editor Information", "Provide your professional details.", (
           <div className="grid md:grid-cols-2 gap-4">
             <FormField control={form.control} name="fullName" render={({ field }) => (
-              <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="designation" render={({ field }) => (
-              <FormItem><FormLabel>Designation</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Designation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="institution" render={({ field }) => (
-              <FormItem><FormLabel>Institution / Affiliation</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Institution / Affiliation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="email" render={({ field }) => (
-              <FormItem><FormLabel>Email Address</FormLabel><FormControl><Input type="email" {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Email Address</FormLabel><FormControl><Input type="email" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="phone" render={({ field }) => (
-              <FormItem><FormLabel>Phone Number</FormLabel><FormControl><Input type="tel" {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Phone Number</FormLabel><FormControl><Input type="tel" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="orcid" render={({ field }) => (
-              <FormItem><FormLabel>ORCID (optional)</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>ORCID (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <div className="md:col-span-2">
             <FormField control={form.control} name="biography" render={({ field }) => (
-              <FormItem><FormLabel>Short Biography</FormLabel><FormControl><Textarea placeholder="100–150 words" {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Short Biography</FormLabel><FormControl><Textarea placeholder="100–150 words" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             </div>
           </div>
@@ -127,10 +127,10 @@ export function BookProposalForm() {
         {renderSection("2. Book Title &amp; Subtitle", "Provide a clear, descriptive title.", (
           <div className="grid md:grid-cols-2 gap-4">
             <FormField control={form.control} name="bookTitle" render={({ field }) => (
-              <FormItem><FormLabel>Book Title</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Book Title</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="bookSubtitle" render={({ field }) => (
-              <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
           </div>
         ))}
@@ -140,7 +140,7 @@ export function BookProposalForm() {
             <FormItem><RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="grid md:grid-cols-3 gap-4">
               {bookTypes.map(type => (
                 <FormItem key={type} className="flex items-center space-x-3 space-y-0">
-                  <FormControl><RadioGroupItem value={type} /></FormControl>
+                  <FormControl><RadioGroupItem value={type} suppressHydrationWarning /></FormControl>
                   <FormLabel className="font-normal">{type}</FormLabel>
                 </FormItem>
               ))}
@@ -150,13 +150,13 @@ export function BookProposalForm() {
         
         {renderSection("4. Aims &amp; Scope", "Explain the purpose, key themes, and importance (150–250 words).", (
           <FormField control={form.control} name="aimsAndScope" render={({ field }) => (
-            <FormItem><FormControl><Textarea rows={6} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormControl><Textarea rows={6} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
           )} />
         ))}
 
         {renderSection("5. Unique Selling Points (USP)", "List 4–6 points explaining what makes the book valuable.", (
           <FormField control={form.control} name="usp" render={({ field }) => (
-            <FormItem><FormControl><Textarea placeholder="e.g., Covers recent advances in agricultural biotechnology..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormControl><Textarea placeholder="e.g., Covers recent advances in agricultural biotechnology..." rows={4} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
           )} />
         ))}
 
@@ -168,7 +168,7 @@ export function BookProposalForm() {
                   <FormItem key={item} className="flex flex-row items-start space-x-3 space-y-0">
                     <FormControl><Checkbox checked={field.value?.includes(item)} onCheckedChange={(checked) => {
                       return checked ? field.onChange([...field.value, item]) : field.onChange(field.value?.filter((value) => value !== item));
-                    }} /></FormControl>
+                    }} suppressHydrationWarning /></FormControl>
                     <FormLabel className="font-normal">{item}</FormLabel>
                   </FormItem>
                 )} />
@@ -179,37 +179,37 @@ export function BookProposalForm() {
 
         {renderSection("7. Proposed Table of Contents (TOC)", "Include chapter titles and brief descriptions.", (
             <FormField control={form.control} name="toc" render={({ field }) => (
-              <FormItem><FormControl><Textarea placeholder="Chapter 1: Introduction - A brief overview..." rows={8} {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormControl><Textarea placeholder="Chapter 1: Introduction - A brief overview..." rows={8} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
         ))}
 
         {renderSection("8. Expected Manuscript Length", "Provide approximate numbers.", (
             <div className="grid md:grid-cols-3 gap-4">
               <FormField control={form.control} name="wordCount" render={({ field }) => (
-                <FormItem><FormLabel>Approx. Words</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                <FormItem><FormLabel>Approx. Words</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
               )} />
               <FormField control={form.control} name="pageCount" render={({ field }) => (
-                <FormItem><FormLabel>Approx. Pages</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                <FormItem><FormLabel>Approx. Pages</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
               )} />
               <FormField control={form.control} name="figureCount" render={({ field }) => (
-                <FormItem><FormLabel>Figures/Tables (optional)</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                <FormItem><FormLabel>Figures/Tables (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
               )} />
             </div>
         ))}
         
         {renderSection("9. Timeline", "When do you expect to submit the complete manuscript?", (
           <FormField control={form.control} name="submissionDate" render={({ field }) => (
-            <FormItem><FormLabel>Estimated Submission Date</FormLabel><FormControl><Input placeholder="e.g., December 2025" {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>Estimated Submission Date</FormLabel><FormControl><Input placeholder="e.g., December 2025" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
           )} />
         ))}
 
         {renderSection("10. Additional Information (Optional)", "Include any prior work, collaborations, funding, or special requirements.", (
           <FormField control={form.control} name="additionalInfo" render={({ field }) => (
-            <FormItem><FormControl><Textarea rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormControl><Textarea rows={4} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
           )} />
         ))}
 
-        <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" size="lg" className="w-full" disabled={isSubmitting} suppressHydrationWarning>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Submit Proposal
         </Button>
