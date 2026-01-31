@@ -67,13 +67,15 @@ export default function Header() {
           <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" suppressHydrationWarning>
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-full sm:w-80">
-                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <SheetTitle>
+                  <span className="sr-only">Menu</span>
+                </SheetTitle>
                 <div className="flex justify-between items-center mb-8">
                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
                       <MphLogo className="h-8 w-auto text-primary" />
