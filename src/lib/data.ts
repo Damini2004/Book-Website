@@ -10,8 +10,9 @@ export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Coming Soon', href: '/coming-soon' },
-  { label: 'Top Seller', href: '/books#popular' },
+  { label: 'Top Seller', href: '/top-seller' },
   { label: 'Books', href: '/books' },
+  { label: 'Author', href: '/author' },
   { label: 'Blog', href: '/news' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -259,4 +260,30 @@ export const comingSoonSections: ComingSoonSection[] = [
             { id: 'cs6', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-6' },
         ]
     }
+];
+
+export const sidebarGenres = [
+    "Fantasy",
+    "Adventure",
+    "Romance",
+    "Contemporary",
+    "Dystopian",
+    "Mystery",
+    "Horror",
+    "Thriller",
+];
+
+export const topAuthors = [
+    "John Nathan Muller",
+    "Sandra Park",
+    "Laura Preston",
+    "John Doe",
+    "Mc Gregor Douglas",
+    "Atom Night",
+    "Danny Green",
+    "Sonya Lopez",
+    "Archie Bochs",
+    "Jelian Coward",
+    "Mark Hatton",
+    "Madison Mc Collen",
 ];
