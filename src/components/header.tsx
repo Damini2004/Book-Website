@@ -48,8 +48,8 @@ export default function Header() {
             </div>
              <div className="md:col-span-4 flex justify-end">
                 <form className="relative w-full max-w-sm">
-                    <Input type="search" placeholder="Search" className="pl-4 pr-10" suppressHydrationWarning />
-                    <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full" suppressHydrationWarning>
+                    <Input type="search" placeholder="Search" className="pl-4 pr-10 rounded-full" suppressHydrationWarning />
+                    <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full text-muted-foreground" suppressHydrationWarning>
                         <Search className="h-4 w-4" />
                     </Button>
                 </form>
