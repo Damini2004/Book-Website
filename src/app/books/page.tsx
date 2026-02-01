@@ -87,23 +87,6 @@ export default function BooksPage() {
             <BookGrid category="popular" />
           </TabsContent>
         </Tabs>
-
-        <div className="mt-16 text-center">
-          <Card className="max-w-2xl mx-auto bg-primary/5">
-            <CardHeader>
-              <CardTitle className="font-headline">Looking for Something Specific?</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Explore our books by subject area or check our resources for distributors and bulk orders.
-              </p>
-              <div className="flex gap-4 justify-center">
-                <Button asChild variant="secondary"><Link href="/book-categories">Browse Categories</Link></Button>
-                <Button asChild variant="secondary"><Link href="/orders">Bulk Orders</Link></Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
   );
