@@ -117,25 +117,23 @@ export default function Home() {
               {newReleaseBooks.map((book) => {
                  const image = PlaceHolderImages.find((p) => p.id === book.image);
                  return (
-                  <Card key={book.id} className="group overflow-hidden">
-                    <div className="lg:flex">
-                        <div className="relative h-80 lg:w-1/2 lg:h-auto">
-                            {image && <Image src={image.imageUrl} alt={book.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
-                             <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <Button size="icon" variant="outline"><ShoppingCart /></Button>
-                                <Button size="icon" variant="outline"><Heart /></Button>
-                                <Button size="icon" variant="outline"><Search /></Button>
-                                <Button size="icon" variant="outline"><Eye /></Button>
-                            </div>
+                  <Card key={book.id} className="group overflow-hidden text-center">
+                    <div className="relative h-80">
+                        {image && <Image src={image.imageUrl} alt={book.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><ShoppingCart /></Button>
+                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Heart /></Button>
+                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Search /></Button>
+                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Eye /></Button>
                         </div>
-                        <CardContent className="p-4 flex flex-col justify-center lg:w-1/2">
-                            <p className="mb-2 font-semibold text-primary">{book.price}</p>
-                            <h3 className="font-headline text-xl font-bold leading-tight">
-                                <Link href="#" className="hover:text-primary">{book.title}</Link>
-                            </h3>
-                            <p className="text-muted-foreground text-sm mt-1">{book.author}</p>
-                        </CardContent>
                     </div>
+                    <CardContent className="p-6">
+                        <p className="mb-2 font-semibold text-primary">{book.price}</p>
+                        <h3 className="font-headline text-xl font-bold leading-tight">
+                            <Link href="#" className="hover:text-primary">{book.title}</Link>
+                        </h3>
+                        <p className="text-muted-foreground text-sm mt-1">{book.author}</p>
+                    </CardContent>
                   </Card>
                  )
               })}
