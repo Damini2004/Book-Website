@@ -78,6 +78,109 @@ export const socialLinks = [
     { name: 'Dribbble', href: '#', icon: Dribbble },
 ];
 
+export type Author = {
+  id: string;
+  name: string;
+  bio: string;
+  image: string;
+  socials: {
+    name: string;
+    href: string;
+    icon: LucideIcon;
+  }[];
+};
+
+export const authors: Author[] = [
+  {
+    id: '1',
+    name: 'Lloyd Wilson',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-1',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+  {
+    id: '2',
+    name: 'Rachel Parker',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-2',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+  {
+    id: '3',
+    name: 'Ian Smith',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-3',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+  {
+    id: '4',
+    name: 'Alicia Henderson',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-4',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+    {
+    id: '5',
+    name: 'Lloyd Wilson',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-5',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+  {
+    id: '6',
+    name: 'Rachel Parker',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-6',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+  {
+    id: '7',
+    name: 'Ian Smith',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-7',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+  {
+    id: '8',
+    name: 'Fred Henderson',
+    bio: 'I am an ambitious workaholic, but apart from that, pretty simple person.',
+    image: 'author-8',
+    socials: [
+      { name: 'Twitter', href: '#', icon: Twitter },
+      { name: 'Facebook', href: '#', icon: Facebook },
+      { name: 'Instagram', href: '#', icon: Instagram },
+    ],
+  },
+];
+
 export type Journal = {
   id: string;
   title: string;
