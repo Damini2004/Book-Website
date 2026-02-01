@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Search, Facebook, Twitter, Instagram, Dribbble, ChevronDown } from "lucide-react";
+import { Menu, X, Search, Facebook, Twitter, Instagram, Dribbble } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,29 +13,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { navLinks, socialLinks } from "@/lib/data";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const bookLinks = [
-    { label: 'Shop All Books', href: '/books' },
-    { label: 'New Releases', href: '/books#new' },
-    { label: 'Top Seller', href: '/top-seller' },
-    { label: 'Browse Categories', href: '/book-categories' },
-  ];
 
   return (
     <header className="bg-background text-foreground">
@@ -79,25 +60,6 @@ export default function Header() {
             <div className="hidden lg:flex items-center justify-center h-16">
                  <div className="flex items-center space-x-1">
                     {navLinks.map((link, index) => {
-                      if (link.label === 'Books') {
-                        return (
-                          <DropdownMenu key={`${link.href}-${index}`}>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="flex items-center gap-1 text-base" suppressHydrationWarning>
-                                {link.label}
-                                <ChevronDown className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                              {bookLinks.map(bookLink => (
-                                <DropdownMenuItem key={bookLink.href} asChild>
-                                  <Link href={bookLink.href}>{bookLink.label}</Link>
-                                </DropdownMenuItem>
-                              ))}
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        );
-                      }
                       return (
                         <Button key={`${link.href}-${index}`} variant="ghost" asChild className="text-base" suppressHydrationWarning>
                             <Link href={link.href}>{link.label}</Link>
