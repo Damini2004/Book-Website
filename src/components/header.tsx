@@ -61,7 +61,7 @@ export default function Header() {
                  <div className="flex items-center space-x-1">
                     {navLinks.map((link, index) => {
                       return (
-                        <Button key={`${link.href}-${index}`} variant="ghost" asChild className="text-base" suppressHydrationWarning>
+                        <Button key={`${link.href}-${index}`} variant="link" asChild className="text-base text-foreground" suppressHydrationWarning>
                             <Link href={link.href}>{link.label}</Link>
                         </Button>
                       );
