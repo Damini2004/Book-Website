@@ -77,6 +77,96 @@
       "description": "The cover of a popular science book",
       "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5NTk4MTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "book cover"
+    },
+    {
+      "id": "hero-new",
+      "description": "Library with books",
+      "imageUrl": "https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsaWJyYXJ5JTIwYm9va3N8ZW58MHx8fHwxNzY5ODk2MDY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "library books"
+    },
+    {
+      "id": "about-new",
+      "description": "Stack of books",
+      "imageUrl": "https://images.unsplash.com/photo-1633099158362-17b8ba5b27db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxib29rcyUyMHN0YWNrfGVufDB8fHx8MTc2OTkwMzY5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "books stack"
+    },
+    {
+      "id": "book-new-1",
+      "description": "Book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5ODQxODQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book-new-2",
+      "description": "Book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1641154748135-8032a61a3f80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5ODQxODQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book-new-3",
+      "description": "Book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5ODQxODQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book-new-4",
+      "description": "Book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5ODQxODQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book-new-5",
+      "description": "Book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5ODQxODQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "book-new-6",
+      "description": "Book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzY5ODQxODQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "testimonial-bg",
+      "description": "Abstract background",
+      "imageUrl": "https://images.unsplash.com/photo-1708379583032-8dd13b3779a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMHRleHR1cmV8ZW58MHx8fHwxNzY5ODkzMjg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract texture"
+    },
+    {
+      "id": "testimonial-person-1",
+      "description": "Person photo",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzY5ODk2NTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-person-2",
+      "description": "Person photo",
+      "imageUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njk4OTY1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-person-3",
+      "description": "Person photo",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njk4OTY1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "blog-1",
+      "description": "Blog post image",
+      "imageUrl": "https://images.unsplash.com/photo-1598369626023-65bce3f9698e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ym9va3MlMjBkZXNrfGVufDB8fHx8MTc2OTg5NDIzOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "books desk"
+    },
+    {
+      "id": "blog-2",
+      "description": "Blog post image",
+      "imageUrl": "https://images.unsplash.com/photo-1593763509246-539d3dee7db9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZWFkaW5nJTIwcGVyc29ufGVufDB8fHx8MTc2OTkzNzE3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "reading person"
+    },
+    {
+      "id": "blog-3",
+      "description": "Blog post image",
+      "imageUrl": "https://images.unsplash.com/photo-1583903485817-d33bb5069eb7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsaWJyYXJ5JTIwYWlzbGV8ZW58MHx8fHwxNzY5OTM3MTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "library aisle"
     }
   ]
 }

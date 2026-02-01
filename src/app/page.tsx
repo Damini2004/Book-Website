@@ -1,19 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { journals, whyPublishWithUs } from "@/lib/data";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { services, newReleaseBooks, testimonials, blogPosts, counters } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { MphLogo } from "@/components/icons";
+import { Heart, Search, ShoppingCart, Eye, Quote } from "lucide-react";
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero');
+  const heroImage = PlaceHolderImages.find((p) => p.id === 'hero-new');
+  const aboutImage = PlaceHolderImages.find((p) => p.id === 'about-new');
+  const testimonialBg = PlaceHolderImages.find((p) => p.id === 'testimonial-bg');
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-1">
-        <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center text-center text-white">
+      <main>
+        <section className="relative h-[80vh] flex items-center">
           {heroImage && (
             <Image
               src={heroImage.imageUrl}
@@ -25,156 +33,193 @@ export default function Home() {
             />
           )}
           <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 max-w-4xl mx-auto px-4">
-            <div className="flex justify-center mb-4">
-              <MphLogo className="h-16 w-auto text-white" />
-            </div>
-            <h1 className="text-4xl md:text-6xl font-headline font-bold mb-4 tracking-tight">
-              Advancing Knowledge in Agricultural Science & Entomology
-            </h1>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-slate-200">
-              We publish leading peer-reviewed journals and authoritative books that support research, innovation, and sustainable practices in agriculture, insect science, crop protection, biotechnology, and environmental sustainability.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg">
-                <Link href="/journals">
-                  Our Journals <ArrowRight className="ml-2" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/book-proposal">Submit Manuscript</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-primary-foreground">
-                <Link href="/about">About Us</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="py-16 lg:py-24 bg-background">
-          <div className="container mx-auto px-4 text-center max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold mb-4">
-              About Malhotra Publishing House
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Founded with a mission to promote high-quality scholarly research in agricultural and entomological sciences, Malhotra Publishing House is dedicated to empowering researchers, academicians, and practitioners around the world. We uphold strong editorial standards, ethical publishing practices, and global dissemination to support science that drives sustainable food systems and environmental resilience.
-            </p>
-          </div>
-        </section>
-
-        <section id="journals" className="py-16 lg:py-24 bg-secondary/50">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-headline font-semibold mb-4">Our Journals</h2>
-              <p className="text-lg text-muted-foreground">
-                Explore our five international, peer-reviewed, open access scholarly journals — each addressing key scientific challenges at the intersection of agriculture, entomology, ecology, and biotechnology.
+          <div className="relative container mx-auto px-4">
+            <div className="max-w-xl text-white">
+              <h1 className="text-5xl md:text-6xl font-headline font-bold mb-4">
+                Good books don't give up all their secrets at once
+              </h1>
+              <p className="mb-8 text-lg">
+                A small river named Duden flows by their place and supplies it with the necessary regelialia.
               </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {journals.slice(0, 5).map((journal) => (
-                <Card key={journal.id} className="flex flex-col hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="bg-primary/10 p-3 rounded-full">
-                        <journal.icon className="h-8 w-8 text-primary" />
-                      </div>
-                      <CardTitle className="text-xl font-headline">{journal.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground">{journal.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center mt-12">
-              <Button asChild>
-                <Link href="/journals">
-                  Explore All Journals <ArrowRight className="ml-2" />
-                </Link>
-              </Button>
+              <div className="flex gap-4">
+                <Button asChild size="lg">
+                  <Link href="/books">View All Books</Link>
+                </Button>
+                <Button asChild size="lg" variant="secondary">
+                  <Link href="/books">Explore Now</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="why-publish" className="py-16 lg:py-24 bg-background">
+        <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-headline font-semibold mb-4">Why Publish With Us?</h2>
-            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {whyPublishWithUs.map((reason, index) => (
-                <div key={index} className="text-center">
-                  <div className="flex justify-center mb-4">
-                    <div className="bg-accent/10 p-4 rounded-full">
-                      <reason.icon className="h-8 w-8 text-accent" />
+              {services.map((service) => (
+                <div key={service.title} className="text-center">
+                  <div className="flex justify-center mb-6">
+                    <div className="bg-primary/10 text-primary rounded-full p-5">
+                      <service.icon className="h-12 w-12" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-headline font-semibold mb-2">{reason.title}</h3>
-                  <p className="text-muted-foreground">{reason.description}</p>
+                  <h2 className="text-2xl font-headline mb-2">
+                    <Link href="#" className="hover:text-primary">{service.title}</Link>
+                  </h2>
+                  <p className="text-muted-foreground">{service.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 lg:py-24 bg-secondary/30">
+          <div className="container mx-auto px-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {counters.map((counter) => (
+                <div key={counter.label} className="text-center">
+                  <strong className="text-5xl font-bold text-primary block mb-2">{counter.number}</strong>
+                  <span className="text-muted-foreground text-lg">{counter.label}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
         
-        <section id="authors" className="py-16 lg:py-24 bg-primary/5">
+        <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-headline font-semibold mb-4">For Authors &amp; Reviewers</h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Whether you are a first-time author or an experienced researcher, we provide comprehensive support. Find detailed submission guidelines, learn about our peer-review process, and access ethical policies.
-                </p>
-                <ul className="space-y-4 text-lg mb-8">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
-                    <span>Detailed submission guidelines</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
-                    <span>Transparent peer-review processes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
-                    <span>Access to ethical policies and manuscript instructions</span>
-                  </li>
-                </ul>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg">
-                    <Link href="/book-proposal">Submit your manuscript <ArrowRight className="ml-2" /></Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline">
-                    <Link href="/contact">Become a Reviewer</Link>
-                  </Button>
-                </div>
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+              <div className="relative h-96 md:h-full min-h-[400px]">
+                {aboutImage && (
+                  <Image src={aboutImage.imageUrl} alt={aboutImage.description} fill className="object-cover rounded-lg" data-ai-hint={aboutImage.imageHint} />
+                )}
               </div>
-               <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-headline font-semibold mb-6">Get in Touch</h3>
-                <p className="text-muted-foreground mb-6">
-                  Connect with our editorial and support teams for queries about submissions, subscriptions, permissions, or journal partnerships.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <MapPin className="h-6 w-6 text-primary mr-4 mt-1" />
-                    <div>
-                      <h4 className="font-semibold">Malhotra Publishing House</h4>
-                      <p className="text-muted-foreground">Publisher of Agriculture &amp; Entomology Journals</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="h-6 w-6 text-primary mr-4" />
-                    <a href="mailto:info@mph.net.in.org" className="text-muted-foreground hover:text-primary transition-colors">info@mph.net.in.org</a>
-                  </div>
-                  <div className="flex items-center">
-                    <Phone className="h-6 w-6 text-primary mr-4" />
-                    <span className="text-muted-foreground">Contact via Phone/WhatsApp</span>
-                  </div>
-                </div>
+              <div>
+                <span className="text-primary font-semibold">Welcome To Publishing Company</span>
+                <h2 className="text-4xl font-headline font-bold mt-2 mb-6">Publishing Company Created By Authors</h2>
+                <p className="text-muted-foreground mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                <p className="text-muted-foreground mb-6">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
+                <Button asChild>
+                  <Link href="/about">View All Our Authors</Link>
+                </Button>
               </div>
             </div>
           </div>
         </section>
+
+        <section className="py-16 lg:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-primary font-semibold">Books</span>
+              <h2 className="text-4xl font-headline font-bold mt-2">New Release</h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {newReleaseBooks.map((book) => {
+                 const image = PlaceHolderImages.find((p) => p.id === book.image);
+                 return (
+                  <Card key={book.id} className="group overflow-hidden">
+                    <div className="lg:flex">
+                        <div className="relative h-80 lg:w-1/2 lg:h-auto">
+                            {image && <Image src={image.imageUrl} alt={book.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                             <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <Button size="icon" variant="outline"><ShoppingCart /></Button>
+                                <Button size="icon" variant="outline"><Heart /></Button>
+                                <Button size="icon" variant="outline"><Search /></Button>
+                                <Button size="icon" variant="outline"><Eye /></Button>
+                            </div>
+                        </div>
+                        <CardContent className="p-4 flex flex-col justify-center lg:w-1/2">
+                            <p className="mb-2 font-semibold text-primary">{book.price}</p>
+                            <h3 className="font-headline text-xl font-bold leading-tight">
+                                <Link href="#" className="hover:text-primary">{book.title}</Link>
+                            </h3>
+                            <p className="text-muted-foreground text-sm mt-1">{book.author}</p>
+                        </CardContent>
+                    </div>
+                  </Card>
+                 )
+              })}
+            </div>
+          </div>
+        </section>
+        
+        <section className="relative py-24 text-white">
+          {testimonialBg && (
+            <Image src={testimonialBg.imageUrl} alt={testimonialBg.description} layout="fill" objectFit="cover" className="z-0" data-ai-hint={testimonialBg.imageHint} />
+          )}
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-12">
+              <span className="font-semibold">Testimonial</span>
+              <h2 className="text-4xl font-headline font-bold mt-2">Kinds Words From Clients</h2>
+            </div>
+            <Carousel opts={{ loop: true }} className="max-w-4xl mx-auto">
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => {
+                  const image = PlaceHolderImages.find(p => p.id === testimonial.image);
+                  return (
+                    <CarouselItem key={index} className="text-center">
+                        <div className="max-w-2xl mx-auto">
+                           <Quote className="h-10 w-10 text-primary mx-auto mb-4" />
+                           <p className="text-lg mb-6">{testimonial.text}</p>
+                           <div className="flex items-center justify-center">
+                              {image && (
+                                <Image src={image.imageUrl} alt={testimonial.name} width={60} height={60} className="rounded-full" data-ai-hint={image.imageHint} />
+                              )}
+                              <div className="pl-4 text-left">
+                                <p className="font-bold font-headline">{testimonial.name}</p>
+                                <span className="text-sm opacity-80">{testimonial.position}</span>
+                              </div>
+                           </div>
+                        </div>
+                    </CarouselItem>
+                  )
+                })}
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/40 border-0" />
+              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/40 border-0" />
+            </Carousel>
+          </div>
+        </section>
+
+        <section className="py-16 lg:py-24">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-primary font-semibold">Blog</span>
+              <h2 className="text-4xl font-headline font-bold mt-2">Recent Blog</h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogPosts.map((post) => {
+                const image = PlaceHolderImages.find((p) => p.id === post.image);
+                return (
+                  <Card key={post.id} className="text-center overflow-hidden">
+                    {image && (
+                      <Link href="#">
+                        <div className="relative h-60">
+                           <Image src={image.imageUrl} alt={post.title} fill className="object-cover" data-ai-hint={image.imageHint}/>
+                        </div>
+                      </Link>
+                    )}
+                    <CardContent className="p-6">
+                       <div className="text-primary mb-2">
+                           <span className="text-3xl font-bold">{post.date.day}</span>
+                           <div className="text-sm leading-tight">
+                               <span>{post.date.month}</span><br/>
+                               <span>{post.date.year}</span>
+                           </div>
+                       </div>
+                       <h3 className="font-headline text-2xl font-bold mb-3">
+                           <Link href="#" className="hover:text-primary">{post.title}</Link>
+                       </h3>
+                       <p className="text-muted-foreground">{post.excerpt}</p>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
   );

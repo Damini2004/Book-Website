@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Twitter, type LucideIcon, Leaf, Sprout, Recycle, Dna, FlaskConical, Globe, BookOpen, ShieldCheck, Star } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Dribbble, BookHeart, Heart, Paintbrush, Scroll, MapPin, Phone, Mail, type LucideIcon, Leaf, Sprout, Recycle, Dna, FlaskConical, Globe, BookOpen, ShieldCheck, Star } from 'lucide-react';
 
 export type NavLink = {
   label: string;
@@ -8,78 +8,74 @@ export type NavLink = {
 
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'About MPH', href: '/about' },
-  { label: 'Journals', href: '/journals' },
-  {
-    label: 'Books',
-    href: '/books',
-    children: [
-      { label: 'Shop All Books', href: '/books' },
-      { label: 'New Releases', href: '/books#new' },
-      { label: 'Best Sellers', href: '/books#popular' },
-    ],
-  },
-  { label: 'Book Proposal', href: '/book-proposal' },
-  { label: 'Distributors & Bulk Orders', href: '/orders' },
-  { label: 'News', href: '/news' },
+  { label: 'About', href: '/about' },
+  { label: 'Coming Soon', href: '#' },
+  { label: 'Top Seller', href: '/books#popular' },
+  { label: 'Books', href: '/books' },
+  { label: 'Author', href: '#' },
+  { label: 'Blog', href: '/news' },
   { label: 'Contact', href: '/contact' },
 ];
 
 type FooterLinkColumn = {
   title: string;
+  description?: string;
   links: {
     label: string;
     href: string;
     external?: boolean;
+    icon?: LucideIcon;
   }[];
 };
 
 export const footerLinks: FooterLinkColumn[] = [
-  {
-    title: 'Malhotra Publishing House',
-    links: [
-      { label: 'About MPH', href: '/about' },
-      { label: 'Our Publishing Focus', href: '/about#focus' },
-      { label: 'Leadership & Office', href: '/about#team' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Journals',
-    links: [
-      { label: 'Journals Portfolio', href: '/journals' },
-      { label: 'Journal Websites (External)', href: '/journals#journal-links', external: true },
-      { label: 'Call for Papers', href: '/journals#cfp' },
-    ],
-  },
-  {
-    title: 'Books Store',
-    links: [
-      { label: 'Shop All Books', href: '/books' },
-      { label: 'Categories', href: '/book-categories' },
-      { label: 'New Releases', href: '/books#new' },
-      { label: 'Best Sellers', href: '/books#popular' },
-      { label: 'Bulk Orders', href: '/orders' },
-      { label: 'Track Order', href: '/track-order' },
-    ],
-  },
-  {
-    title: 'Support & Legal',
-    links: [
-      { label: 'FAQs', href: '/faq' },
-      { label: 'Shipping & Delivery', href: '/shipping' },
-      { label: 'Returns & Refunds', href: '/returns' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms & Conditions', href: '/terms' },
-    ],
-  },
+    {
+      title: 'Connect',
+      description: 'Far far away, behind the word mountains, far from the countries.',
+      links: [],
+    },
+    {
+      title: 'Extra Links',
+      links: [
+        { label: 'Affiliate Program', href: '#' },
+        { label: 'Business Services', href: '#' },
+        { label: 'Education Services', href: '#' },
+        { label: 'Gift Cards', href: '#' },
+      ],
+    },
+    {
+      title: 'Legal',
+      links: [
+        { label: 'Join us', href: '#' },
+        { label: 'Blog', href: '/news' },
+        { label: 'Privacy & Policy', href: '/privacy' },
+        { label: 'Term & Conditions', href: '/terms' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About Us', href: '/about' },
+        { label: 'Blog', href: '/news' },
+        { label: 'Contact', href: '/contact' },
+        { label: 'Careers', href: '#' },
+      ],
+    },
+    {
+      title: 'Have a Questions?',
+      links: [
+        { label: '203 Fake St. Mountain View, San Francisco, California, USA', href: '#', icon: MapPin },
+        { label: '+2 392 3929 210', href: '#', icon: Phone },
+        { label: 'info@yourdomain.com', href: 'mailto:info@yourdomain.com', icon: Mail },
+      ],
+    },
 ];
 
 export const socialLinks = [
-    { name: 'LinkedIn', href: '#', icon: Linkedin },
     { name: 'Facebook', href: '#', icon: Facebook },
+    { name: 'Twitter', href: '#', icon: Twitter },
     { name: 'Instagram', href: '#', icon: Instagram },
-    { name: 'X', href: '#', icon: Twitter },
+    { name: 'Dribbble', href: '#', icon: Dribbble },
 ];
 
 export type Journal = {
@@ -167,6 +163,16 @@ export const books: Book[] = [
     { id: '8', title: 'A Guide to Beneficial Insects', author: 'Dr. Chloe Davis', price: '$68.00', category: 'regular', image: 'book2' },
 ];
 
+export const newReleaseBooks = [
+  { id: '1', title: 'You Are Your Only Limit', author: 'By John Nathan Muller', price: '$12.00', image: 'book-new-1' },
+  { id: '2', title: '101 Essays That Will Change The Way You Thinks', author: 'By John Nathan Muller', price: '$8.00', image: 'book-new-2' },
+  { id: '3', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', image: 'book-new-3' },
+  { id: '4', title: 'All The Letters I Should Have Sent', author: 'By John Nathan Muller', price: '$9.00', image: 'book-new-4' },
+  { id: '5', title: 'Happy', author: 'By John Nathan Muller', price: '$20.00', image: 'book-new-5' },
+  { id: '6', title: 'Milk & Honey', author: 'By John Nathan Muller', price: '$12.00', image: 'book-new-6' },
+];
+
+
 export const bookCategories = [
   "Agricultural Science",
   "Entomology",
@@ -196,3 +202,29 @@ export const bookAudiences = [
   "Industry Practitioners",
   "Government / NGO Bodies",
 ]
+
+export const services = [
+  { title: "Children's Book", description: "A small river named Duden flows by their place and supplies it with the necessary regelialia.", icon: BookHeart },
+  { title: "Romance", description: "A small river named Duden flows by their place and supplies it with the necessary regelialia.", icon: Heart },
+  { title: "Art & Architecture", description: "A small river named Duden flows by their place and supplies it with the necessary regelialia.", icon: Paintbrush },
+  { title: "History", description: "A small river named Duden flows by their place and supplies it with the necessary regelialia.", icon: Scroll },
+];
+
+export const counters = [
+    { number: '75,678', label: 'Active Readers' },
+    { number: '3,040', label: 'Total Pages' },
+    { number: '283', label: 'Cup Of Coffee' },
+    { number: '14,500', label: 'Facebook Fans' },
+];
+
+export const testimonials = [
+  { name: 'Roger Scott', position: 'Marketing Manager', text: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.', image: 'testimonial-person-1' },
+  { name: 'Jane Doe', position: 'Product Designer', text: 'Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.', image: 'testimonial-person-2' },
+  { name: 'John Smith', position: 'Developer', text: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'testimonial-person-3' },
+];
+
+export const blogPosts = [
+  { id: 1, title: 'New Friends With Books', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-1', date: {day: '02', month: 'May', year: '2024'} },
+  { id: 2, title: 'The World of Imagination', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-2', date: {day: '01', month: 'May', year: '2024'} },
+  { id: 3, title: 'Reading on a Rainy Day', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-3', date: {day: '30', month: 'Apr', year: '2024'} },
+];
