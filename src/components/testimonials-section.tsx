@@ -56,7 +56,7 @@ export function TestimonialsSection({ testimonialBg }: TestimonialsSectionProps)
           <h2 className="text-4xl font-headline font-bold mt-2">Kinds Words From Clients</h2>
         </div>
         
-        <div className="relative pb-10">
+        <div className="relative pt-8 pb-10">
             <Carousel setApi={setApi} opts={{ loop: true }} className="max-w-4xl mx-auto">
             <CarouselContent>
                 {testimonials.map((testimonial, index) => {
