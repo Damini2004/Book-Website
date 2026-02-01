@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Search, Facebook, Twitter, Instagram, Dribbble } from "lucide-react";
+import { Menu, X, Search, Facebook, Twitter, Instagram, Dribbble, ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,10 +13,29 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { navLinks, socialLinks } from "@/lib/data";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const bookLinks = [
+    { label: 'Shop All Books', href: '/books' },
+    { label: 'New Releases', href: '/books#new' },
+    { label: 'Best Sellers', href: '/books#popular' },
+    { label: 'Browse Categories', href: '/book-categories' },
+  ];
 
   return (
     <header className="bg-background text-foreground">
@@ -59,11 +78,32 @@ export default function Header() {
         <div className="container mx-auto px-4">
             <div className="hidden lg:flex items-center justify-center h-16">
                  <div className="flex items-center space-x-1">
-                    {navLinks.map((link) => (
-                        <Button key={link.href} variant="ghost" asChild className="text-base">
+                    {navLinks.map((link, index) => {
+                      if (link.label === 'Books') {
+                        return (
+                          <DropdownMenu key={`${link.href}-${index}`}>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="flex items-center gap-1 text-base" suppressHydrationWarning>
+                                {link.label}
+                                <ChevronDown className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                              {bookLinks.map(bookLink => (
+                                <DropdownMenuItem key={bookLink.href} asChild>
+                                  <Link href={bookLink.href}>{bookLink.label}</Link>
+                                </DropdownMenuItem>
+                              ))}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        );
+                      }
+                      return (
+                        <Button key={`${link.href}-${index}`} variant="ghost" asChild className="text-base">
                             <Link href={link.href}>{link.label}</Link>
                         </Button>
-                    ))}
+                      );
+                    })}
                 </div>
             </div>
             <div className="lg:hidden flex justify-between items-center h-16">
@@ -72,7 +112,7 @@ export default function Header() {
                 </Link>
                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" suppressHydrationWarning>
                       <Menu className="h-6 w-6" />
                       <span className="sr-only">Open menu</span>
                     </Button>
@@ -87,16 +127,41 @@ export default function Header() {
                         </Button>
                      </div>
                      <nav className="flex flex-col space-y-2">
-                        {navLinks.map((link) => (
-                             <Link
-                              key={link.href}
+                        {navLinks.map((link, index) => {
+                          if (link.label === 'Books') {
+                            return (
+                              <Accordion type="single" collapsible key={`${link.href}-${index}`}>
+                                <AccordionItem value="books">
+                                  <AccordionTrigger className="font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md w-full justify-between">
+                                    Books
+                                  </AccordionTrigger>
+                                  <AccordionContent className="pl-8">
+                                    {bookLinks.map(bookLink => (
+                                       <Link
+                                        key={bookLink.href}
+                                        href={bookLink.href}
+                                        className="block font-semibold text-base py-2 hover:bg-muted rounded-md"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                      >
+                                        {bookLink.label}
+                                      </Link>
+                                    ))}
+                                  </AccordionContent>
+                                </AccordionItem>
+                              </Accordion>
+                            );
+                          }
+                          return (
+                            <Link
+                              key={`${link.href}-${index}`}
                               href={link.href}
                               className="block font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {link.label}
                             </Link>
-                        ))}
+                          );
+                        })}
                      </nav>
                   </SheetContent>
                 </Sheet>
