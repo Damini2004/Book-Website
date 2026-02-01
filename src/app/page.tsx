@@ -2,16 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { services, newReleaseBooks, testimonials, blogPosts, counters } from "@/lib/data";
+import { services, newReleaseBooks, blogPosts, counters } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Heart, Search, ShoppingCart, Eye, Quote } from "lucide-react";
+import { Heart, Search, ShoppingCart, Eye } from "lucide-react";
+import { TestimonialsSection } from "@/components/testimonials-section";
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((p) => p.id === 'hero-new');
@@ -141,44 +135,7 @@ export default function Home() {
           </div>
         </section>
         
-        <section className="relative py-24 text-white">
-          {testimonialBg && (
-            <Image src={testimonialBg.imageUrl} alt={testimonialBg.description} layout="fill" objectFit="cover" className="z-0" data-ai-hint={testimonialBg.imageHint} />
-          )}
-          <div className="absolute inset-0 bg-black/60"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <span className="font-semibold">Testimonial</span>
-              <h2 className="text-4xl font-headline font-bold mt-2">Kinds Words From Clients</h2>
-            </div>
-            <Carousel opts={{ loop: true }} className="max-w-4xl mx-auto">
-              <CarouselContent>
-                {testimonials.map((testimonial, index) => {
-                  const image = PlaceHolderImages.find(p => p.id === testimonial.image);
-                  return (
-                    <CarouselItem key={index} className="text-center">
-                        <div className="max-w-2xl mx-auto">
-                           <Quote className="h-10 w-10 text-primary mx-auto mb-4" />
-                           <p className="text-lg mb-6">{testimonial.text}</p>
-                           <div className="flex items-center justify-center">
-                              {image && (
-                                <Image src={image.imageUrl} alt={testimonial.name} width={60} height={60} className="rounded-full" data-ai-hint={image.imageHint} />
-                              )}
-                              <div className="pl-4 text-left">
-                                <p className="font-bold font-headline">{testimonial.name}</p>
-                                <span className="text-sm opacity-80">{testimonial.position}</span>
-                              </div>
-                           </div>
-                        </div>
-                    </CarouselItem>
-                  )
-                })}
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/40 border-0" />
-              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/40 border-0" />
-            </Carousel>
-          </div>
-        </section>
+        <TestimonialsSection testimonialBg={testimonialBg} />
 
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4">
