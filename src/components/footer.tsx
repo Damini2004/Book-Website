@@ -6,9 +6,16 @@ export default function Footer() {
   return (
     <footer className="bg-black">
       <div className="container mx-auto px-8 pt-24 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          {footerLinks.map((column, colIndex) => (
-            <div key={column.title} className={column.title === 'Connect' ? 'lg:col-span-1' : 'col-span-1'}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
+          {footerLinks.map((column, colIndex) => {
+            let colSpan;
+            if (colIndex === 0 || colIndex === footerLinks.length - 1) {
+              colSpan = 'lg:col-span-3';
+            } else {
+              colSpan = 'lg:col-span-2';
+            }
+            return (
+            <div key={column.title} className={colSpan}>
               <h2 className="font-headline font-bold text-lg mb-4 text-white">{column.title}</h2>
               {column.description && <p className="text-gray-400 mb-4">{column.description}</p>}
               {column.title === 'Connect' && (
@@ -47,7 +54,7 @@ export default function Footer() {
                 </ul>
               )}
             </div>
-          ))}
+          )})}
         </div>
       </div>
       <div className="text-center py-5 border-t border-gray-800">
