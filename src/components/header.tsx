@@ -57,7 +57,7 @@ export default function Header() {
         </div>
       </div>
 
-      <nav className="sticky top-0 z-50 bg-black border-y border-gray-800 mt-4">
+      <nav className="sticky top-0 z-50 bg-background border-y mt-4">
         <div className="container mx-auto px-4">
             <div className="hidden lg:flex items-center justify-center h-16">
                  <div className="flex items-center space-x-2">
@@ -68,10 +68,10 @@ export default function Header() {
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "px-4 py-2 text-base rounded-md transition-colors",
+                                "px-4 py-2 text-base rounded-md transition-colors hover:underline",
                                 isActive
-                                ? "text-white font-semibold"
-                                : "text-gray-400 hover:text-white"
+                                ? "text-primary font-semibold"
+                                : "text-muted-foreground"
                             )}
                             >
                             {link.label}
@@ -81,21 +81,21 @@ export default function Header() {
                 </div>
             </div>
             <div className="lg:hidden flex justify-between items-center h-16">
-                 <Link href="/" className="font-headline text-xl font-bold text-white">
+                 <Link href="/" className="font-headline text-xl font-bold">
                     Publishing <span className="text-primary">Company</span>
                 </Link>
                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" className="text-white hover:bg-gray-800 hover:text-white" suppressHydrationWarning>
+                    <Button variant="ghost" size="icon" suppressHydrationWarning>
                       <Menu className="h-6 w-6" />
                       <span className="sr-only">Open menu</span>
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="right" className="w-full sm:w-80 bg-black text-white border-l border-gray-800">
+                  <SheetContent side="right" className="w-full sm:w-80">
                      <SheetTitle className="sr-only">Menu</SheetTitle>
                      <div className="flex justify-between items-center mb-8">
                          <h2 className="font-headline text-lg font-bold">Menu</h2>
-                        <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="text-white hover:bg-gray-800 hover:text-white">
+                        <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
                             <X className="h-6 w-6" />
                             <span className="sr-only">Close menu</span>
                         </Button>
@@ -105,7 +105,7 @@ export default function Header() {
                             <Link
                               key={`${link.href}-${index}`}
                               href={link.href}
-                              className="block font-semibold text-lg px-4 py-2 hover:bg-gray-800 rounded-md"
+                              className="block font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {link.label}
