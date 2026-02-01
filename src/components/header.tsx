@@ -68,10 +68,8 @@ export default function Header() {
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "px-4 py-2 text-base rounded-md transition-colors hover:underline",
-                                isActive
-                                ? "text-primary font-semibold"
-                                : "text-muted-foreground"
+                                "nav-link-underline px-4 py-2 text-base",
+                                isActive && "active"
                             )}
                             >
                             {link.label}

@@ -66,3 +66,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .nav-link-underline {
+    @apply relative text-muted-foreground no-underline transition-colors duration-200;
+  }
+  .nav-link-underline:hover {
+    @apply text-primary;
+  }
+  .nav-link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-[3px] w-0 bg-primary transition-all duration-300 ease-in-out;
+  }
+  .nav-link-underline:hover::after {
+    @apply w-full;
+  }
+  .nav-link-underline.active {
+    @apply text-primary font-semibold;
+  }
+  .nav-link-underline.active::after {
+     @apply w-full;
+  }
+}
