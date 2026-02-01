@@ -127,31 +127,7 @@ export default function Header() {
                         </Button>
                      </div>
                      <nav className="flex flex-col space-y-2">
-                        {navLinks.map((link, index) => {
-                          if (link.label === 'Books') {
-                            return (
-                              <Accordion type="single" collapsible key={`${link.href}-${index}`}>
-                                <AccordionItem value="books">
-                                  <AccordionTrigger className="font-semibold text-lg px-4 py-2 hover:bg-muted rounded-md w-full justify-between">
-                                    Books
-                                  </AccordionTrigger>
-                                  <AccordionContent className="pl-8">
-                                    {bookLinks.map(bookLink => (
-                                       <Link
-                                        key={bookLink.href}
-                                        href={bookLink.href}
-                                        className="block font-semibold text-base py-2 hover:bg-muted rounded-md"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                      >
-                                        {bookLink.label}
-                                      </Link>
-                                    ))}
-                                  </AccordionContent>
-                                </AccordionItem>
-                              </Accordion>
-                            );
-                          }
-                          return (
+                        {navLinks.map((link, index) => (
                             <Link
                               key={`${link.href}-${index}`}
                               href={link.href}
@@ -160,8 +136,7 @@ export default function Header() {
                             >
                               {link.label}
                             </Link>
-                          );
-                        })}
+                        ))}
                      </nav>
                   </SheetContent>
                 </Sheet>
