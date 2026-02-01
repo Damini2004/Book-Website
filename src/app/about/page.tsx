@@ -1,19 +1,15 @@
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { journals } from "@/lib/data";
+import { Button } from "@/components/ui/button";
+import Link from 'next/link';
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { CheckCircle, Book, Users, Goal, Rocket, Phone, Mail, MapPin, Globe } from "lucide-react";
+import { testimonials, counters } from "@/lib/data";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Quote } from "lucide-react";
 
 export default function AboutPage() {
-  const heroImage = PlaceHolderImages.find((p) => p.id === "about-hero");
-
-  const publishingStandards = [
-    { title: "Double-Blind Peer Review", description: "Every manuscript undergoes unbiased evaluation by qualified reviewers.", icon: Users },
-    { title: "Ethical Publishing", description: "We strictly adhere to principles of academic integrity, originality, and transparency.", icon: CheckCircle },
-    { title: "Open Access & Global Reach", description: "Our journals are accessible worldwide, supporting equitable dissemination.", icon: Globe },
-    { title: "Timely Processing & Author Support", description: "Authors receive structured guidance with an efficient editorial workflow.", icon: Rocket },
-    { title: "Qualified Editorial Boards", description: "Each journal is led by experienced researchers and subject-matter experts.", icon: Book },
-  ];
+  const heroImage = PlaceHolderImages.find((p) => p.id === "about-hero-new");
+  const aboutImage = PlaceHolderImages.find((p) => p.id === 'about-new');
+  const testimonialBg = PlaceHolderImages.find((p) => p.id === 'testimonial-bg');
 
   return (
     <div>
@@ -30,118 +26,110 @@ export default function AboutPage() {
         )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tight">
-            About Malhotra Publishing House
+          <p className="text-sm uppercase tracking-widest">
+            <Link href="/" className="hover:underline">Home</Link>
+            <span className="mx-2">&gt;</span>
+            <span>About us</span>
+          </p>
+          <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tight mt-2">
+            About Us
           </h1>
         </div>
       </section>
 
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-primary mb-4">
-              Advancing Excellence in Agricultural Science, Entomology &amp; Sustainable Research
-            </h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-primary font-semibold">Welcome to Publishing Company</span>
+              <h2 className="text-3xl md:text-4xl font-headline text-foreground mt-2">Welcome to Publishing Company</h2>
+            </div>
+            <p className="text-lg text-muted-foreground mb-8">
+              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+            </p>
+            <blockquote className="relative border-l-4 border-primary pl-8 py-4 my-8">
+                <Quote className="absolute left-0 top-0 h-10 w-10 text-primary/30 -translate-x-1/2" />
+                <h3 className="text-2xl font-headline italic">Good friends, good books, and a sleepy conscience: this is the ideal life.</h3>
+            </blockquote>
             <p className="text-lg text-muted-foreground">
-              Malhotra Publishing House (MPH) is a dedicated academic publisher specializing in Agricultural Science, Entomology, Crop Protection, Biological Control, Biotechnology, and Applied Insect Research. With a strong commitment to scientific integrity, innovation, and accessibility, MPH serves as a trusted publishing partner for researchers, academicians, agri-professionals, and institutions worldwide.
+              When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
-            <Card>
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl flex items-center gap-2"><Goal className="text-accent"/>Our Vision</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">To become a global leader in agricultural and entomological publishing by promoting high-quality scientific communication and supporting innovations that drive sustainable farming and biodiversity protection.</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl flex items-center gap-2"><Rocket className="text-accent"/>Our Mission</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start"><CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5 shrink-0" /> To publish credible and impactful research</li>
-                    <li className="flex items-start"><CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5 shrink-0" /> To promote open access dissemination</li>
-                    <li className="flex items-start"><CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5 shrink-0" /> To support young researchers and early-career scientists</li>
-                    <li className="flex items-start"><CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5 shrink-0" /> To encourage environmentally responsible research practices</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div id="focus" className="mb-16">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-headline font-semibold">Our Publishing Standards</h2>
+        </div>
+      </section>
+      
+      <section className="py-16 lg:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="relative h-96 md:h-full min-h-[400px]">
+              {aboutImage && (
+                <Image src={aboutImage.imageUrl} alt={aboutImage.description} fill className="object-cover rounded-lg" data-ai-hint={aboutImage.imageHint} />
+              )}
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
-              {publishingStandards.map((standard) => (
-                <div key={standard.title} className="text-center">
-                  <div className="flex justify-center mb-4">
-                    <div className="bg-primary/10 p-4 rounded-full">
-                      <standard.icon className="h-8 w-8 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2 font-headline">{standard.title}</h3>
+            <div>
+              <span className="text-primary font-semibold">Welcome To Publishing Company</span>
+              <h2 className="text-4xl font-headline font-bold mt-2 mb-6">Publishing Company Created By Authors</h2>
+              <p className="text-muted-foreground mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              <p className="text-muted-foreground mb-6">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
+              <Button asChild>
+                <Link href="/about">View All Our Authors</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-24 text-white">
+        {testimonialBg && (
+          <Image src={testimonialBg.imageUrl} alt={testimonialBg.description} layout="fill" objectFit="cover" className="z-0" data-ai-hint={testimonialBg.imageHint} />
+        )}
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <span className="font-semibold">Testimonial</span>
+            <h2 className="text-4xl font-headline font-bold mt-2">Kinds Words From Clients</h2>
+          </div>
+          <Carousel opts={{ loop: true }} className="max-w-4xl mx-auto">
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => {
+                const image = PlaceHolderImages.find(p => p.id === testimonial.image);
+                return (
+                  <CarouselItem key={index} className="text-center">
+                      <div className="max-w-2xl mx-auto">
+                         <Quote className="h-10 w-10 text-primary mx-auto mb-4" />
+                         <p className="text-lg mb-6">{testimonial.text}</p>
+                         <div className="flex items-center justify-center">
+                            {image && (
+                              <Image src={image.imageUrl} alt={testimonial.name} width={60} height={60} className="rounded-full" data-ai-hint={image.imageHint} />
+                            )}
+                            <div className="pl-4 text-left">
+                              <p className="font-bold font-headline">{testimonial.name}</p>
+                              <span className="text-sm opacity-80">{testimonial.position}</span>
+                            </div>
+                         </div>
+                      </div>
+                  </CarouselItem>
+                )
+              })}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/40 border-0" />
+            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 text-white bg-white/20 hover:bg-white/40 border-0" />
+          </Carousel>
+        </div>
+      </section>
+      
+       <section className="py-16 lg:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {counters.map((counter) => (
+                <div key={counter.label} className="text-center">
+                  <strong className="text-5xl font-bold text-primary block mb-2">{counter.number}</strong>
+                  <span className="text-muted-foreground text-lg">{counter.label}</span>
                 </div>
               ))}
             </div>
           </div>
-          
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2 id="team" className="text-3xl font-headline font-semibold mb-4">Our Journals &amp; Focus</h2>
-              <p className="text-muted-foreground mb-6">
-                MPH hosts and manages five specialized journals, each with a clearly defined focus on critical areas of agriculture and entomology, including: insect–plant interactions, crop protection, biological control, agricultural biotechnology, and fundamental entomology.
-              </p>
-              <div className="space-y-4">
-                {journals.map(journal => (
-                  <div key={journal.id} className="flex items-start gap-4 p-4 rounded-lg bg-secondary/50">
-                    <journal.icon className="h-8 w-8 text-accent mt-1 shrink-0" />
-                    <div>
-                      <h3 className="font-semibold">{journal.title} ({journal.shortTitle})</h3>
-                      <p className="text-sm text-muted-foreground">{journal.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-3xl font-headline font-semibold mb-4">Books &amp; Partnerships</h2>
-              <p className="text-muted-foreground mb-6">
-                Beyond journals, MPH publishes a range of scholarly works and collaborates with academic and research institutions to support their publishing needs.
-              </p>
-              <div className="space-y-6">
-                <Card>
-                  <CardHeader><CardTitle className="font-headline text-xl flex items-center gap-2"><Book className="text-primary"/>Books &amp; Scholarly Monographs</CardTitle></CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">We publish academic textbooks, reference books, handbooks, edited volumes, conference proceedings, laboratory manuals, and monographs in entomology &amp; agricultural sciences.</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader><CardTitle className="font-headline text-xl flex items-center gap-2"><Users className="text-primary"/>Academic &amp; Institutional Partnerships</CardTitle></CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">We collaborate with research institutes, agricultural universities, scientific societies, and conference organizers to produce special issues, edited books, and thematic collections.</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="font-headline text-xl">Contact Us</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex items-center"><MapPin className="h-5 w-5 mr-3 text-primary"/><p>India</p></div>
-                    <div className="flex items-center"><Mail className="h-5 w-5 mr-3 text-primary"/><a href="mailto:info@mph.net.in.org" className="hover:underline">info@mph.net.in.org</a></div>
-                    <div className="flex items-center"><Phone className="h-5 w-5 mr-3 text-primary"/><p>Contact via Phone/WhatsApp</p></div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
+        </section>
     </div>
   );
 }
