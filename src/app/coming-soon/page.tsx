@@ -52,11 +52,11 @@ export default function ComingSoonPage() {
                       <div className="md:flex">
                         <div className="relative h-80 md:w-1/3 md:h-auto min-h-[250px]">
                           {image && <Image src={image.imageUrl} alt={book.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
-                          <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <Button size="icon" variant="outline"><ShoppingCart /></Button>
-                              <Button size="icon" variant="outline"><Heart /></Button>
-                              <Button size="icon" variant="outline"><Search /></Button>
-                              <Button size="icon" variant="outline"><Eye /></Button>
+                          <div className="absolute inset-0 bg-black/20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><ShoppingCart /></Button>
+                              <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><Heart /></Button>
+                              <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><Search /></Button>
+                              <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><Eye /></Button>
                           </div>
                         </div>
                         <CardContent className="p-6 flex flex-col justify-center md:w-2/3">
