@@ -9,6 +9,7 @@ export type NavLink = {
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
+  { label: 'Coming Soon', href: '/coming-soon' },
   { label: 'Top Seller', href: '/books#popular' },
   { label: 'Books', href: '/books' },
   { label: 'Blog', href: '/news' },
@@ -225,4 +226,37 @@ export const blogPosts = [
   { id: 1, title: 'New Friends With Books', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-1', date: {day: '02', month: 'May', year: '2024'} },
   { id: 2, title: 'The World of Imagination', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-2', date: {day: '01', month: 'May', year: '2024'} },
   { id: 3, title: 'Reading on a Rainy Day', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-3', date: {day: '30', month: 'Apr', year: '2024'} },
+];
+
+export type ComingSoonBook = {
+  id: string;
+  title: string;
+  author: string;
+  price: string;
+  description: string;
+  image: string;
+};
+
+export type ComingSoonSection = {
+  date: string;
+  books: ComingSoonBook[];
+};
+
+export const comingSoonSections: ComingSoonSection[] = [
+    {
+        date: 'September, 2024',
+        books: [
+            { id: 'cs1', title: 'You Are Your Only Limit', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-1' },
+            { id: 'cs2', title: '101 Essays That Will Change The Way You Think', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-2' },
+            { id: 'cs3', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-3' },
+        ]
+    },
+    {
+        date: 'December, 2024',
+        books: [
+             { id: 'cs4', title: 'You Are Your Only Limit', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-4' },
+            { id: 'cs5', title: '101 Essays That Will Change The Way You Think', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-5' },
+            { id: 'cs6', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-6' },
+        ]
+    }
 ];
