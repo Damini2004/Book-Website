@@ -147,7 +147,7 @@
     {
       "id": "testimonial-person-3",
       "description": "Person photo",
-      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njk4OTY1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njk4OTY1NzV8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
     },
     {
@@ -189,7 +189,7 @@
     {
       "id": "books-hero",
       "description": "A modern library with a lot of books on shelves.",
-      "imageUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWFkaW5nJTIwYm9va3N8ZW58MHx8fHwxNzcwMDQ0NzMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWFkaW5nJTIwYm9va3N8ZW58MHx8fHwxNzcwMDQ0NzMzfDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "library books"
     },
     {
@@ -207,25 +207,25 @@
     {
       "id": "author-2",
       "description": "Portrait of an author",
-      "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhdXRob3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzAxMzAyNDd8MA&ixlib=rb-4.1.0&q=80&w=400",
+      "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhdXRob3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzAxMzAyNDd8MA&ixlib.rb-4.1.0&q=80&w=400",
       "imageHint": "author portrait"
     },
     {
       "id": "author-3",
       "description": "Portrait of an author",
-      "imageUrl": "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhdXRob3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzAxMzAyNDd8MA&ixlib=rb-4.1.0&q=80&w=400",
+      "imageUrl": "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhdXRob3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzAxMzAyNDd8MA&ixlib.rb-4.1.0&q=80&w=400",
       "imageHint": "author portrait"
     },
     {
       "id": "author-4",
       "description": "Portrait of an author",
-      "imageUrl": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXV0aG9yJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzcwMTMwMjQ3fDA&ixlib=rb-4.1.0&q=80&w=400",
+      "imageUrl": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXV0aG9yJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzcwMTMwMjQ3fDA&ixlib.rb-4.1.0&q=80&w=400",
       "imageHint": "author portrait"
     },
     {
       "id": "author-5",
       "description": "Portrait of an author",
-      "imageUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8YXV0aG9yJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzcwMTMwMjQ3fDA&ixlib=rb-4.1.0&q=80&w=400",
+      "imageUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8YXV0aG9yJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzcwMTMwMjQ3fDA&ixlib.rb-4.1.0&q=80&w=400",
       "imageHint": "author portrait"
     },
     {
@@ -245,6 +245,12 @@
       "description": "Portrait of an author",
       "imageUrl": "https://images.unsplash.com/photo-1627915579973-c80f42b36a1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8YXV0aG9yJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzcwMTMwMjQ3fDA&ixlib.rb-4.1.0&q=80&w=400",
       "imageHint": "author portrait"
+    },
+    {
+      "id": "blog-hero",
+      "description": "A person reading a book in a cozy chair.",
+      "imageUrl": "https://images.unsplash.com/photo-1543628048-3a21AC6da533?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyZWFkaW5nJTIwYm9va3xlbnwwfHx8fDE3NzA0MDM1MDJ8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "reading book"
     }
   ]
 }
