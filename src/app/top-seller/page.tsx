@@ -19,10 +19,10 @@ const BookCard = ({ book, index }: { book: (typeof newReleaseBooks)[0], index: n
                 <div className="relative h-80">
                     {image && <Image src={image.imageUrl} alt={book.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Button size="icon" variant="outline"><ShoppingCart /></Button>
-                        <Button size="icon" variant="outline"><Heart /></Button>
-                        <Button size="icon" variant="outline"><Search /></Button>
-                        <Button size="icon" variant="outline"><Eye /></Button>
+                        <Button size="icon" variant="outline" suppressHydrationWarning><ShoppingCart /></Button>
+                        <Button size="icon" variant="outline" suppressHydrationWarning><Heart /></Button>
+                        <Button size="icon" variant="outline" suppressHydrationWarning><Search /></Button>
+                        <Button size="icon" variant="outline" suppressHydrationWarning><Eye /></Button>
                     </div>
                 </div>
                 <CardContent className="p-4 text-center">
@@ -45,13 +45,13 @@ export default function TopSellerPage() {
     const renderPagination = () => (
         <div className="flex justify-center mt-8">
             <nav className="flex items-center space-x-1">
-                <Button variant="outline" size="icon" disabled>&lt;</Button>
-                <Button variant="default" size="icon">1</Button>
-                <Button variant="outline" size="icon">2</Button>
-                <Button variant="outline" size="icon">3</Button>
-                <Button variant="outline" size="icon">4</Button>
-                <Button variant="outline" size="icon">5</Button>
-                <Button variant="outline" size="icon">&gt;</Button>
+                <Button variant="outline" size="icon" disabled suppressHydrationWarning>&lt;</Button>
+                <Button variant="default" size="icon" suppressHydrationWarning>1</Button>
+                <Button variant="outline" size="icon" suppressHydrationWarning>2</Button>
+                <Button variant="outline" size="icon" suppressHydrationWarning>3</Button>
+                <Button variant="outline" size="icon" suppressHydrationWarning>4</Button>
+                <Button variant="outline" size="icon" suppressHydrationWarning>5</Button>
+                <Button variant="outline" size="icon" suppressHydrationWarning>&gt;</Button>
             </nav>
         </div>
     );
@@ -97,8 +97,8 @@ export default function TopSellerPage() {
                         <Card>
                             <CardContent className="p-4">
                                 <form className="relative">
-                                    <Input placeholder="Type a keyword and hit enter" />
-                                    <Button size="icon" variant="ghost" className="absolute right-0 top-0 h-full">
+                                    <Input placeholder="Type a keyword and hit enter" suppressHydrationWarning />
+                                    <Button size="icon" variant="ghost" className="absolute right-0 top-0 h-full" suppressHydrationWarning>
                                         <Search className="h-4 w-4" />
                                     </Button>
                                 </form>

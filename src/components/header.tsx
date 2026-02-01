@@ -33,7 +33,7 @@ export default function Header() {
   const bookLinks = [
     { label: 'Shop All Books', href: '/books' },
     { label: 'New Releases', href: '/books#new' },
-    { label: 'Best Sellers', href: '/books#popular' },
+    { label: 'Top Seller', href: '/top-seller' },
     { label: 'Browse Categories', href: '/book-categories' },
   ];
 
@@ -65,8 +65,8 @@ export default function Header() {
             </div>
              <div className="md:col-span-4 flex justify-end">
                 <form className="relative w-full max-w-sm">
-                    <Input type="search" placeholder="Search" className="pl-4 pr-10" />
-                    <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full">
+                    <Input type="search" placeholder="Search" className="pl-4 pr-10" suppressHydrationWarning />
+                    <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full" suppressHydrationWarning>
                         <Search className="h-4 w-4" />
                     </Button>
                 </form>
@@ -99,7 +99,7 @@ export default function Header() {
                         );
                       }
                       return (
-                        <Button key={`${link.href}-${index}`} variant="ghost" asChild className="text-base">
+                        <Button key={`${link.href}-${index}`} variant="ghost" asChild className="text-base" suppressHydrationWarning>
                             <Link href={link.href}>{link.label}</Link>
                         </Button>
                       );
