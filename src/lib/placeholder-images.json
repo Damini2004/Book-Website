@@ -185,6 +185,12 @@
       "description": "A cozy reading nook with a stack of books",
       "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWFkaW5nJTIwYm9va3N8ZW58MHx8fHwxNzcwMDQ0NzMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "reading books"
+    },
+    {
+      "id": "books-hero",
+      "description": "A modern library with a lot of books on shelves.",
+      "imageUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWFkaW5nJTIwYm9va3N8ZW58MHx8fHwxNzcwMDQ0NzMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "library books"
     }
   ]
 }
