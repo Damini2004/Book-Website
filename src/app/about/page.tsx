@@ -45,7 +45,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-headline text-foreground mt-2">Welcome to Publishing Company</h2>
             </div>
             <p className="text-lg text-muted-foreground mb-8">
-              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+              We publish leading peer-reviewed journals and authoritative books that support research, innovation, and sustainable practices in agriculture, insect science, crop protection, biotechnology, and environmental sustainability.
             </p>
             <blockquote className="relative border-l-4 border-primary pl-8 py-4 my-8">
                 <Quote className="absolute left-0 top-0 h-10 w-10 text-primary/30 -translate-x-1/2" />
