@@ -49,7 +49,7 @@ export default function AboutPage() {
             </p>
             <blockquote className="relative border-l-4 border-primary pl-8 py-4 my-8">
                 <Quote className="absolute left-0 top-0 h-10 w-10 text-primary/30 -translate-x-1/2" />
-                <h3 className="text-2xl font-headline">Advancing Knowledge in Agricultural Science & Entomology</h3>
+                <h3 className="text-2xl font-headline">Advancing Excellence in Agricultural Science, Entomology & Sustainable Research</h3>
             </blockquote>
             <p className="text-lg text-muted-foreground">
               Founded with a mission to promote high-quality scholarly research in agricultural and entomological sciences, Malhotra Publishing House is dedicated to empowering researchers, academicians, and practitioners around the world. We uphold strong editorial standards, ethical publishing practices, and global dissemination to support science that drives sustainable food systems and environmental resilience.
