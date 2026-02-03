@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-headline">Advancing Excellence in Agricultural Science, Entomology & Sustainable Research</h3>
             </blockquote>
             <p className="text-lg text-muted-foreground">
-              Founded with a mission to promote high-quality scholarly research in agricultural and entomological sciences, Malhotra Publishing House is dedicated to empowering researchers, academicians, and practitioners around the world. We uphold strong editorial standards, ethical publishing practices, and global dissemination to support science that drives sustainable food systems and environmental resilience.
+              Our vision is to strengthen global research in agriculture and insect sciences by offering high-quality open access journals, scholarly books, and a platform that accelerates the dissemination of evidence-based knowledge.
             </p>
           </div>
         </div>
