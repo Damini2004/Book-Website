@@ -69,6 +69,16 @@ export const footerLinks: FooterLinkColumn[] = [
     },
 ];
 
+export const footerContact = {
+    title: "Have a Question?",
+    contacts: [
+        { icon: Globe, text: "your-mph-domain.com", href: "#" },
+        { icon: Mail, text: "info@mph.net.in", href: "mailto:info@mph.net.in" },
+        { icon: Phone, text: "+1 234 5678 90", href: "tel:+1234567890" },
+        { icon: MapPin, text: "India", href: "#" }
+    ]
+}
+
 export const socialLinks = [
     { name: 'LinkedIn', href: '#', icon: Linkedin },
     { name: 'Facebook', href: '#', icon: Facebook },

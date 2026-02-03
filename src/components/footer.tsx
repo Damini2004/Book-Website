@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { footerLinks, socialLinks } from "@/lib/data";
+import { footerLinks, socialLinks, footerContact } from "@/lib/data";
 import { ChevronRight } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-black">
       <div className="container mx-auto px-8 pt-24 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {footerLinks.map((column) => (
-            <div key={column.title}>
+            <div key={column.title} className="lg:col-span-1">
               <h2 className="font-headline font-bold text-lg mb-4 text-white">{column.title}</h2>
               <ul className="space-y-2">
                 {column.links.map((link, linkIndex) => (
@@ -25,6 +25,19 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+           <div>
+              <h2 className="font-headline font-bold text-lg mb-4 text-white">{footerContact.title}</h2>
+              <ul className="space-y-3">
+                {footerContact.contacts.map((contact, index) => (
+                  <li key={index} className="flex items-start">
+                    <contact.icon className="h-5 w-5 text-primary mr-3 mt-1 shrink-0" />
+                    <a href={contact.href} className="text-gray-400 hover:text-primary transition-colors break-all">
+                      {contact.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
         </div>
       </div>
       <div className="border-t border-gray-800">
