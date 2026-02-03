@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-headline">Advancing Knowledge in Agricultural Science & Entomology</h3>
             </blockquote>
             <p className="text-lg text-muted-foreground">
-              When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
+              Founded with a mission to promote high-quality scholarly research in agricultural and entomological sciences, Malhotra Publishing House is dedicated to empowering researchers, academicians, and practitioners around the world. We uphold strong editorial standards, ethical publishing practices, and global dissemination to support science that drives sustainable food systems and environmental resilience.
             </p>
           </div>
         </div>
