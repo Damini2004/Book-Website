@@ -45,7 +45,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-headline text-foreground mt-2">Welcome to Publishing Company</h2>
             </div>
             <p className="text-lg text-muted-foreground mb-8">
-              We publish leading peer-reviewed journals and authoritative books that support research, innovation, and sustainable practices in agriculture, insect science, crop protection, biotechnology, and environmental sustainability.
+              Malhotra Publishing House (MPH) is a dedicated academic publisher specializing in Agricultural Science, Entomology, Crop Protection, Biological Control, Biotechnology, and Applied Insect Research. With a strong commitment to scientific integrity, innovation, and accessibility, MPH serves as a trusted publishing partner for researchers, academicians, agri-professionals, and institutions worldwide.
             </p>
             <blockquote className="relative border-l-4 border-primary pl-8 py-4 my-8">
                 <Quote className="absolute left-0 top-0 h-10 w-10 text-primary/30 -translate-x-1/2" />
