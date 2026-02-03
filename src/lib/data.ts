@@ -30,52 +30,50 @@ type FooterLinkColumn = {
 
 export const footerLinks: FooterLinkColumn[] = [
     {
-      title: 'Connect',
-      description: 'Far far away, behind the word mountains, far from the countries.',
-      links: [],
-    },
-    {
-      title: 'Extra Links',
+      title: 'Malhotra Publishing House',
       links: [
-        { label: 'Affiliate Program', href: '#' },
-        { label: 'Business Services', href: '#' },
-        { label: 'Education Services', href: '#' },
-        { label: 'Gift Cards', href: '#' },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { label: 'Join us', href: '#' },
-        { label: 'Blog', href: '/news' },
-        { label: 'Privacy & Policy', href: '/privacy' },
-        { label: 'Term & Conditions', href: '/terms' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { label: 'About Us', href: '/about' },
-        { label: 'Blog', href: '/news' },
+        { label: 'About MPH', href: '/about' },
+        { label: 'Our Publishing Focus', href: '/about' },
+        { label: 'Leadership & Office', href: '/author' },
         { label: 'Contact', href: '/contact' },
-        { label: 'Careers', href: '#' },
       ],
     },
     {
-      title: 'Have a Questions?',
+      title: 'Journals',
       links: [
-        { label: '203 Fake St. Mountain View, San Francisco, California, USA', href: '#', icon: MapPin },
-        { label: '+2 392 3929 210', href: '#', icon: Phone },
-        { label: 'info@yourdomain.com', href: 'mailto:info@yourdomain.com', icon: Mail },
+        { label: 'Journals Portfolio', href: '/journals' },
+        { label: 'Journal Websites', href: '/journals#journal-links' },
+        { label: 'Call for Papers', href: '/journals#cfp' },
+      ],
+    },
+    {
+      title: 'Books Store',
+      links: [
+        { label: 'Shop All Books', href: '/books' },
+        { label: 'Categories', href: '/book-categories' },
+        { label: 'New Releases', href: '/coming-soon' },
+        { label: 'Best Sellers', href: '/top-seller' },
+        { label: 'Bulk Orders', href: '/orders' },
+        { label: 'Track Order', href: '/track-order' },
+      ],
+    },
+    {
+      title: 'Support & Legal',
+      links: [
+        { label: 'FAQs', href: '/faq' },
+        { label: 'Shipping & Delivery', href: '/shipping' },
+        { label: 'Returns & Refunds', href: '/returns' },
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms & Conditions', href: '/terms' },
       ],
     },
 ];
 
 export const socialLinks = [
+    { name: 'LinkedIn', href: '#', icon: Linkedin },
     { name: 'Facebook', href: '#', icon: Facebook },
-    { name: 'Twitter', href: '#', icon: Twitter },
     { name: 'Instagram', href: '#', icon: Instagram },
-    { name: 'Dribbble', href: '#', icon: Dribbble },
+    { name: 'X', href: '#', icon: Twitter },
 ];
 
 export type Author = {
