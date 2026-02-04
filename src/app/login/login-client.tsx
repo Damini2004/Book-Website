@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth, useUser } from "@/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
@@ -49,6 +49,12 @@ export function LoginClient() {
     },
   });
 
+  useEffect(() => {
+    if (user) {
+      router.push("/admin");
+    }
+  }, [user, router]);
+
   const handleLogin = async (data: LoginFormValues) => {
     if (!auth) return;
     setIsLoading(true);
@@ -68,7 +74,6 @@ export function LoginClient() {
   };
 
   if (user) {
-    router.push("/admin");
     return null;
   }
 
