@@ -42,16 +42,3 @@ export async function generateSummaryAction(
     return { error: `An error occurred: ${errorMessage}` };
   }
 }
-
-export async function submitProposalAction(data: any) {
-    try {
-        console.log("New book proposal submitted:", data);
-        // Here you would typically save the data to a database,
-        // send an email, or trigger another workflow.
-        return { success: true, message: "Your book proposal has been submitted successfully! We will review it and get back to you shortly." };
-    } catch(e) {
-        console.error(e);
-        const errorMessage = e instanceof Error ? e.message : "An unknown error occurred.";
-        return { success: false, message: `Submission failed: ${errorMessage}` };
-    }
-}

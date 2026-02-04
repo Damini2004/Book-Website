@@ -6,6 +6,10 @@ import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useFirestore } from "@/firebase";
+import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { errorEmitter } from "@/firebase/error-emitter";
+import { FirestorePermissionError } from "@/firebase/errors";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +26,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "./ui/checkbox";
 import { bookTypes, bookAudiences, bookCategories } from "@/lib/data";
-import { submitProposalAction } from "@/app/book-proposal/actions";
 
 const proposalFormSchema = z.object({
   fullName: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -54,6 +57,7 @@ type ProposalFormValues = z.infer<typeof proposalFormSchema>;
 export function BookProposalForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const firestore = useFirestore();
   const form = useForm<ProposalFormValues>({
     resolver: zodResolver(proposalFormSchema),
     defaultValues: {
@@ -65,22 +69,43 @@ export function BookProposalForm() {
 
   async function onSubmit(data: ProposalFormValues) {
     setIsSubmitting(true);
-    const result = await submitProposalAction(data);
-    setIsSubmitting(false);
-
-    if (result.success) {
-      toast({
-        title: "Proposal Submitted!",
-        description: result.message,
-      });
-      form.reset();
-    } else {
+    if (!firestore) {
       toast({
         variant: "destructive",
         title: "Submission Failed",
-        description: result.message,
+        description: "Firebase is not initialized.",
       });
+      setIsSubmitting(false);
+      return;
     }
+
+    const proposalRef = doc(collection(firestore, "bookProposals"));
+    
+    setDoc(proposalRef, {
+        ...data,
+        createdAt: serverTimestamp(),
+    }).then(() => {
+        toast({
+            title: "Proposal Submitted!",
+            description: "Your book proposal has been submitted successfully! We will review it and get back to you shortly.",
+        });
+        form.reset();
+    }).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+          path: proposalRef.path,
+          operation: 'create',
+          requestResourceData: data,
+        });
+        errorEmitter.emit('permission-error', permissionError);
+        
+        toast({
+            variant: "destructive",
+            title: "Submission Failed",
+            description: serverError.message || "Could not save proposal. You may not have permissions.",
+        });
+    }).finally(() => {
+        setIsSubmitting(false);
+    });
   }
 
   const renderSection = (title: string, description: string, children: React.ReactNode) => (

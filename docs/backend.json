@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "bookProposal": {
+      "title": "Book Proposal",
+      "description": "A book proposal submitted by an author.",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "description": "Author's full name." },
+        "designation": { "type": "string", "description": "Author's designation." },
+        "institution": { "type": "string", "description": "Author's institution or affiliation." },
+        "email": { "type": "string", "format": "email", "description": "Author's email address." },
+        "phone": { "type": "string", "description": "Author's phone number." },
+        "orcid": { "type": "string", "description": "Author's ORCID (optional)." },
+        "biography": { "type": "string", "description": "A short biography of the author." },
+        "bookTitle": { "type": "string", "description": "The title of the proposed book." },
+        "bookSubtitle": { "type": "string", "description": "The subtitle of the proposed book (optional)." },
+        "bookType": { "type": "string", "description": "The type of book." },
+        "aimsAndScope": { "type": "string", "description": "The aims and scope of the book." },
+        "usp": { "type": "string", "description": "Unique selling points of the book." },
+        "targetAudience": { "type": "array", "items": { "type": "string" }, "description": "The target audience for the book." },
+        "toc": { "type": "string", "description": "The proposed table of contents." },
+        "wordCount": { "type": "string", "description": "Estimated word count." },
+        "pageCount": { "type": "string", "description": "Estimated page count." },
+        "figureCount": { "type": "string", "description": "Estimated number of figures/tables (optional)." },
+        "submissionDate": { "type": "string", "description": "Estimated manuscript submission date." },
+        "additionalInfo": { "type": "string", "description": "Any additional information (optional)." }
+      },
+      "required": [
+        "fullName", "designation", "institution", "email", "phone", "biography",
+        "bookTitle", "bookType", "aimsAndScope", "usp", "targetAudience",
+        "toc", "wordCount", "pageCount", "submissionDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": []
+  },
+  "firestore": {
+    "/bookProposals/{proposalId}": {
+      "schema": { "$ref": "#/entities/bookProposal" },
+      "description": "Stores submitted book proposals."
+    }
+  }
+}
