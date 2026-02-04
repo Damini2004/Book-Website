@@ -32,15 +32,20 @@ The application will be available at `http://localhost:9002`.
 
 The website includes a secure admin section to manage submitted book proposals.
 
-**How to Create an Admin Account:**
+**How to Log In as an Admin:**
 
-There is no separate sign-up page for administrators. An admin account is created automatically:
+Admin accounts must be created directly in the Firebase Authentication console.
+
+1.  Go to your Firebase project's console.
+2.  Navigate to the **Authentication** section.
+3.  Go to the **Users** tab and click **"Add user"**.
+4.  Enter the email and a secure password for the new admin.
+
+Once the account is created, the admin can log in on the website:
 
 1.  Navigate to the **Login** page (either by going to `/login` or clicking the "Admin" link in the navigation).
-2.  Enter any valid email and a password of your choice (minimum 6 characters).
+2.  Enter the email and password that were set up in the Firebase console.
 3.  Click "Login".
-
-The first time you do this with a new email address, the system will automatically create a new admin account for you and log you in. For subsequent logins, you will use the same credentials.
 
 **Managing Proposals:**
 

@@ -21,10 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useAuth, useUser } from "@/firebase";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -60,25 +57,11 @@ export function LoginClient() {
       toast({ title: "Login Successful" });
       router.push("/admin");
     } catch (error: any) {
-      if (error.code === "auth/user-not-found") {
-        try {
-          await createUserWithEmailAndPassword(auth, data.email, data.password);
-          toast({ title: "Account Created & Logged In" });
-          router.push("/admin");
-        } catch (createError: any) {
-          toast({
-            variant: "destructive",
-            title: "Error",
-            description: createError.message,
-          });
-        }
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: error.message,
-        });
-      }
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -94,8 +77,7 @@ export function LoginClient() {
       <CardHeader>
         <CardTitle className="text-2xl">Admin Login</CardTitle>
         <CardDescription>
-          Enter your email and password to access the admin dashboard. If you
-          don't have an account, one will be created for you.
+          Enter your email and password to access the admin dashboard.
         </CardDescription>
       </CardHeader>
       <CardContent>
