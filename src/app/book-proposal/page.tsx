@@ -2,19 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Check, BookCheck, Telescope, PenSquare, GitPullRequest, FileCheck2, BookUser, Milestone, Send, FileSignature, BookUp } from "lucide-react";
 import Link from "next/link";
 import { Mail } from "lucide-react";
-import dynamic from 'next/dynamic';
-
-const BookProposalClient = dynamic(
-  () => import('./book-proposal-client').then(mod => mod.BookProposalClient),
-  { 
-    ssr: false,
-    loading: () => (
-      <Card className="max-w-5xl mx-auto flex items-center justify-center p-8">
-        <p>Loading submission form...</p>
-      </Card>
-    )
-  }
-);
+import { BookProposalClient } from "./book-proposal-client";
 
 
 export default function BookProposalPage() {
