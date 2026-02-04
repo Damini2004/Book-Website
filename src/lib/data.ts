@@ -15,6 +15,7 @@ export const navLinks: NavLink[] = [
   { label: 'Author', href: '/author' },
   { label: 'Blog', href: '/news' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Admin', href: '/admin' },
 ];
 
 type FooterLinkColumn = {

@@ -2,8 +2,10 @@
 
 import { initializeFirebase } from '.';
 import { FirebaseProvider } from './provider';
+import { getAuth } from 'firebase/auth';
 
 const { firebaseApp, firestore } = initializeFirebase();
+const auth = getAuth(firebaseApp);
 
 export function FirebaseClientProvider({
   children,
@@ -11,7 +13,7 @@ export function FirebaseClientProvider({
   children: React.ReactNode;
 }) {
   return (
-    <FirebaseProvider value={{ firebaseApp, firestore }}>
+    <FirebaseProvider value={{ firebaseApp, firestore, auth }}>
       {children}
     </FirebaseProvider>
   );
