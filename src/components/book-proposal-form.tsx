@@ -29,7 +29,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "./ui/checkbox";
 import { bookTypes, bookAudiences } from "@/lib/data";
 
-const proposalFormSchema = z.object({
+const authorProposalSchema = z.object({
   fullName: z.string().min(2, { message: "Name must be at least 2 characters." }),
   designation: z.string().min(2, { message: "Designation is required." }),
   institution: z.string().min(2, { message: "Institution is required." }),
@@ -56,7 +56,35 @@ const proposalFormSchema = z.object({
   additionalInfo: z.string().optional(),
 });
 
-type ProposalFormValues = z.infer<typeof proposalFormSchema>;
+const adminCreateBookSchema = z.object({
+  fullName: z.string().min(2, { message: "Author name is required." }),
+  bookTitle: z.string().min(5, { message: "Book title is required." }),
+  bookSubtitle: z.string().optional(),
+  itemName: z.string().optional(),
+  itemType: z.string().optional(),
+  price: z.string().optional(),
+  bookType: z.enum(bookTypes as [string, ...string[]], { required_error: "You need to select a book type." }),
+  submissionDate: z.string().min(3, { message: "Please provide an estimated date." }),
+  additionalInfo: z.string().optional(),
+  
+  // Optional fields that are not shown to admin but need to be in schema
+  designation: z.string().optional(),
+  institution: z.string().optional(),
+  email: z.string().email().optional(),
+  phone: z.string().optional(),
+  orcid: z.string().optional(),
+  biography: z.string().optional(),
+  aimsAndScope: z.string().optional(),
+  usp: z.string().optional(),
+  targetAudience: z.array(z.string()).optional(),
+  toc: z.string().optional(),
+  wordCount: z.string().optional(),
+  pageCount: z.string().optional(),
+  figureCount: z.string().optional(),
+});
+
+
+type ProposalFormValues = z.infer<typeof authorProposalSchema | typeof adminCreateBookSchema>;
 
 export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
   const { toast } = useToast();
@@ -65,6 +93,8 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
   const [sampleChapterDataUrl, setSampleChapterDataUrl] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const { user } = useUser();
+  
+  const proposalFormSchema = user ? adminCreateBookSchema : authorProposalSchema;
 
   const form = useForm<ProposalFormValues>({
     resolver: zodResolver(proposalFormSchema),
@@ -176,31 +206,35 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {renderSection("1. Author / Editor Information", "Provide your professional details.", (
+        {renderSection("1. Author / Editor Information", user ? "Enter the author's name." : "Provide your professional details.", (
           <div className="grid md:grid-cols-2 gap-4">
             <FormField control={form.control} name="fullName" render={({ field }) => (
               <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
-            <FormField control={form.control} name="designation" render={({ field }) => (
-              <FormItem><FormLabel>Designation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            <FormField control={form.control} name="institution" render={({ field }) => (
-              <FormItem><FormLabel>Institution / Affiliation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            <FormField control={form.control} name="email" render={({ field }) => (
-              <FormItem><FormLabel>Email Address</FormLabel><FormControl><Input type="email" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            <FormField control={form.control} name="phone" render={({ field }) => (
-              <FormItem><FormLabel>Phone Number</FormLabel><FormControl><Input type="tel" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            <FormField control={form.control} name="orcid" render={({ field }) => (
-              <FormItem><FormLabel>ORCID (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            <div className="md:col-span-2">
-            <FormField control={form.control} name="biography" render={({ field }) => (
-              <FormItem><FormLabel>Short Biography</FormLabel><FormControl><Textarea placeholder="100–150 words" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            </div>
+            {!user && (
+              <>
+                <FormField control={form.control} name="designation" render={({ field }) => (
+                  <FormItem><FormLabel>Designation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="institution" render={({ field }) => (
+                  <FormItem><FormLabel>Institution / Affiliation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="email" render={({ field }) => (
+                  <FormItem><FormLabel>Email Address</FormLabel><FormControl><Input type="email" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="phone" render={({ field }) => (
+                  <FormItem><FormLabel>Phone Number</FormLabel><FormControl><Input type="tel" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="orcid" render={({ field }) => (
+                  <FormItem><FormLabel>ORCID (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <div className="md:col-span-2">
+                <FormField control={form.control} name="biography" render={({ field }) => (
+                  <FormItem><FormLabel>Short Biography</FormLabel><FormControl><Textarea placeholder="100–150 words" {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                </div>
+              </>
+            )}
           </div>
         ))}
         
@@ -241,54 +275,58 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
           )} />
         ))}
         
-        {renderSection("4. Aims & Scope", "Explain the purpose, key themes, and importance (150–250 words).", (
-          <FormField control={form.control} name="aimsAndScope" render={({ field }) => (
-            <FormItem><FormControl><Textarea rows={6} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-          )} />
-        ))}
+        {!user && (
+          <>
+            {renderSection("4. Aims & Scope", "Explain the purpose, key themes, and importance (150–250 words).", (
+              <FormField control={form.control} name="aimsAndScope" render={({ field }) => (
+                <FormItem><FormControl><Textarea rows={6} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+              )} />
+            ))}
 
-        {renderSection("5. Unique Selling Points (USP)", "List 4–6 points explaining what makes the book valuable.", (
-          <FormField control={form.control} name="usp" render={({ field }) => (
-            <FormItem><FormControl><Textarea placeholder="e.g., Covers recent advances in agricultural biotechnology..." rows={4} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-          )} />
-        ))}
+            {renderSection("5. Unique Selling Points (USP)", "List 4–6 points explaining what makes the book valuable.", (
+              <FormField control={form.control} name="usp" render={({ field }) => (
+                <FormItem><FormControl><Textarea placeholder="e.g., Covers recent advances in agricultural biotechnology..." rows={4} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+              )} />
+            ))}
 
-        {renderSection("6. Target Audience", "Select all that apply.", (
-          <FormField control={form.control} name="targetAudience" render={() => (
-            <FormItem><div className="grid md:grid-cols-2 gap-4">
-              {bookAudiences.map((item) => (
-                <FormField key={item} control={form.control} name="targetAudience" render={({ field }) => (
-                  <FormItem key={item} className="flex flex-row items-start space-x-3 space-y-0">
-                    <FormControl><Checkbox checked={field.value?.includes(item)} onCheckedChange={(checked) => {
-                      return checked ? field.onChange([...field.value, item]) : field.onChange(field.value?.filter((value) => value !== item));
-                    }} suppressHydrationWarning /></FormControl>
-                    <FormLabel className="font-normal">{item}</FormLabel>
-                  </FormItem>
+            {renderSection("6. Target Audience", "Select all that apply.", (
+              <FormField control={form.control} name="targetAudience" render={() => (
+                <FormItem><div className="grid md:grid-cols-2 gap-4">
+                  {bookAudiences.map((item) => (
+                    <FormField key={item} control={form.control} name="targetAudience" render={({ field }) => (
+                      <FormItem key={item} className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormControl><Checkbox checked={field.value?.includes(item)} onCheckedChange={(checked) => {
+                          return checked ? field.onChange([...field.value, item]) : field.onChange(field.value?.filter((value) => value !== item));
+                        }} suppressHydrationWarning /></FormControl>
+                        <FormLabel className="font-normal">{item}</FormLabel>
+                      </FormItem>
+                    )} />
+                  ))}
+                </div><FormMessage /></FormItem>
+              )} />
+            ))}
+
+            {renderSection("7. Proposed Table of Contents (TOC)", "Include chapter titles and brief descriptions.", (
+                <FormField control={form.control} name="toc" render={({ field }) => (
+                  <FormItem><FormControl><Textarea placeholder="Chapter 1: Introduction - A brief overview..." rows={8} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
                 )} />
-              ))}
-            </div><FormMessage /></FormItem>
-          )} />
-        ))}
+            ))}
 
-        {renderSection("7. Proposed Table of Contents (TOC)", "Include chapter titles and brief descriptions.", (
-            <FormField control={form.control} name="toc" render={({ field }) => (
-              <FormItem><FormControl><Textarea placeholder="Chapter 1: Introduction - A brief overview..." rows={8} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-        ))}
-
-        {renderSection("8. Expected Manuscript Length", "Provide approximate numbers.", (
-            <div className="grid md:grid-cols-3 gap-4">
-              <FormField control={form.control} name="wordCount" render={({ field }) => (
-                <FormItem><FormLabel>Approx. Words</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-              )} />
-              <FormField control={form.control} name="pageCount" render={({ field }) => (
-                <FormItem><FormLabel>Approx. Pages</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-              )} />
-              <FormField control={form.control} name="figureCount" render={({ field }) => (
-                <FormItem><FormLabel>Figures/Tables (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-              )} />
-            </div>
-        ))}
+            {renderSection("8. Expected Manuscript Length", "Provide approximate numbers.", (
+                <div className="grid md:grid-cols-3 gap-4">
+                  <FormField control={form.control} name="wordCount" render={({ field }) => (
+                    <FormItem><FormLabel>Approx. Words</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                  )} />
+                  <FormField control={form.control} name="pageCount" render={({ field }) => (
+                    <FormItem><FormLabel>Approx. Pages</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                  )} />
+                  <FormField control={form.control} name="figureCount" render={({ field }) => (
+                    <FormItem><FormLabel>Figures/Tables (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                  )} />
+                </div>
+            ))}
+          </>
+        )}
         
         {renderSection("9. Timeline", "When do you expect to submit the complete manuscript?", (
           <FormField control={form.control} name="submissionDate" render={({ field }) => (
