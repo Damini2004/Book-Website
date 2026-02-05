@@ -1,3 +1,4 @@
+
 import { Facebook, Instagram, Linkedin, Twitter, Dribbble, BookHeart, Heart, Paintbrush, Scroll, MapPin, Phone, Mail, type LucideIcon, Leaf, Sprout, Recycle, Dna, FlaskConical, Globe, BookOpen, ShieldCheck, Star } from 'lucide-react';
 
 export type NavLink = {
@@ -255,36 +256,6 @@ export const whyPublishWithUs = [
     { title: 'Author Support', description: 'Clear submission guidelines, fast review, and ethical publishing guidance.', icon: Star }
 ];
 
-export type Book = {
-  id: string;
-  title: string;
-  author: string;
-  price: string;
-  category: 'new' | 'popular' | 'regular';
-  image: string;
-};
-
-export const books: Book[] = [
-    { id: '1', title: 'Advanced Plant Physiology', author: 'Dr. Anya Sharma', price: '$75.00', category: 'new', image: 'book1' },
-    { id: '2', title: 'The World of Insects', author: 'Prof. Kenji Tanaka', price: '$65.00', category: 'popular', image: 'book2' },
-    { id: '3', title: 'Sustainable Agriculture Now', author: 'Maria Garcia', price: '$80.00', category: 'new', image: 'book3' },
-    { id: '4', title: 'Bioinformatics for Growers', author: 'Dr. Ben Carter', price: '$95.00', category: 'popular', image: 'book4' },
-    { id: '5', title: 'Modern Crop Protection', author: 'Dr. Emily White', price: '$70.00', category: 'regular', image: 'book5' },
-    { id: '6', title: 'The Ecology of Pests', author: 'Samuel Green', price: '$55.00', category: 'popular', image: 'book6' },
-    { id: '7', title: 'Genomic Revolutions in Farming', author: 'Dr. Lena Petrova', price: '$110.00', category: 'new', image: 'book1' },
-    { id: '8', title: 'A Guide to Beneficial Insects', author: 'Dr. Chloe Davis', price: '$68.00', category: 'regular', image: 'book2' },
-];
-
-export const newReleaseBooks = [
-  { id: '1', title: 'You Are Your Only Limit', author: 'By John Nathan Muller', price: '$12.00', image: 'book-new-1' },
-  { id: '2', title: '101 Essays That Will Change The Way You Thinks', author: 'By John Nathan Muller', price: '$8.00', image: 'book-new-2' },
-  { id: '3', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', image: 'book-new-3' },
-  { id: '4', title: 'All The Letters I Should Have Sent', author: 'By John Nathan Muller', price: '$9.00', image: 'book-new-4' },
-  { id: '5', title: 'Happy', author: 'By John Nathan Muller', price: '$20.00', image: 'book-new-5' },
-  { id: '6', title: 'Milk & Honey', author: 'By John Nathan Muller', price: '$12.00', image: 'book-new-6' },
-];
-
-
 export const bookCategories = [
   "Agricultural Science",
   "Entomology",
@@ -339,39 +310,6 @@ export const blogPosts = [
   { id: 1, title: 'New Friends With Books', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-1', date: {day: '02', month: 'May', year: '2024'} },
   { id: 2, title: 'The World of Imagination', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-2', date: {day: '01', month: 'May', year: '2024'} },
   { id: 3, title: 'Reading on a Rainy Day', excerpt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia.', image: 'blog-3', date: {day: '30', month: 'Apr', year: '2024'} },
-];
-
-export type ComingSoonBook = {
-  id: string;
-  title: string;
-  author: string;
-  price: string;
-  description: string;
-  image: string;
-};
-
-export type ComingSoonSection = {
-  date: string;
-  books: ComingSoonBook[];
-};
-
-export const comingSoonSections: ComingSoonSection[] = [
-    {
-        date: 'September, 2024',
-        books: [
-            { id: 'cs1', title: 'You Are Your Only Limit', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-1' },
-            { id: 'cs2', title: '101 Essays That Will Change The Way You Think', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-2' },
-            { id: 'cs3', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-3' },
-        ]
-    },
-    {
-        date: 'December, 2024',
-        books: [
-             { id: 'cs4', title: 'You Are Your Only Limit', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-4' },
-            { id: 'cs5', title: '101 Essays That Will Change The Way You Think', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-5' },
-            { id: 'cs6', title: 'Your Soul Is A River', author: 'By John Nathan Muller', price: '$12.00', description: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.', image: 'book-new-6' },
-        ]
-    }
 ];
 
 export const sidebarGenres = [

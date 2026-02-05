@@ -1,3 +1,4 @@
+
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
@@ -23,6 +24,9 @@ export type BookProposal = {
   usp: string;
   targetAudience: string[];
   toc: string;
+  price?: string;
+  itemName?: string;
+  itemType?: string;
 };
 
 const ExpandedDetail = ({ label, value }: { label: string; value: React.ReactNode }) => (
@@ -127,6 +131,9 @@ export const renderSubComponent = ({ row }: { row: any }) => {
     return (
       <div className="p-4 bg-muted/50">
         <div className="space-y-2">
+            <ExpandedDetail label="Price" value={row.original.price ? `₹${row.original.price}`: 'N/A'} />
+            <ExpandedDetail label="Item Name" value={row.original.itemName || 'N/A'} />
+            <ExpandedDetail label="Item Type" value={row.original.itemType || 'N/A'} />
             <ExpandedDetail label="Biography" value={row.original.biography} />
             <ExpandedDetail label="Aims & Scope" value={row.original.aimsAndScope} />
             <ExpandedDetail label="Unique Selling Points" value={row.original.usp} />

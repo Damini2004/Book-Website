@@ -1,11 +1,12 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { services, newReleaseBooks, blogPosts, counters } from "@/lib/data";
+import { services, blogPosts, counters } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Heart, Search, ShoppingCart, Eye } from "lucide-react";
 import { TestimonialsSection } from "@/components/testimonials-section";
+import { NewReleaseBooks } from "@/components/new-release-books";
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((p) => p.id === 'hero-new');
@@ -107,31 +108,7 @@ export default function Home() {
               <span className="text-primary font-semibold">Books</span>
               <h2 className="text-4xl font-headline font-bold mt-2">New Release</h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {newReleaseBooks.map((book) => {
-                 const image = PlaceHolderImages.find((p) => p.id === book.image);
-                 return (
-                  <Card key={book.id} className="group overflow-hidden text-center">
-                    <div className="relative h-80">
-                        {image && <Image src={image.imageUrl} alt={book.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
-                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><ShoppingCart /></Button>
-                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Heart /></Button>
-                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Search /></Button>
-                            <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Eye /></Button>
-                        </div>
-                    </div>
-                    <CardContent className="p-6">
-                        <p className="mb-2 font-semibold text-primary">{book.price}</p>
-                        <h3 className="font-headline text-xl font-bold leading-tight">
-                            <Link href="#" className="hover:text-primary">{book.title}</Link>
-                        </h3>
-                        <p className="text-muted-foreground text-sm mt-1">{book.author}</p>
-                    </CardContent>
-                  </Card>
-                 )
-              })}
-            </div>
+            <NewReleaseBooks />
           </div>
         </section>
         
