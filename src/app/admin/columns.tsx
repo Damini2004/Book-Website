@@ -3,6 +3,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal, ChevronDown, ChevronRight, ArrowUpDown } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -27,6 +28,7 @@ export type BookProposal = {
   price?: string;
   itemName?: string;
   itemType?: string;
+  coverPhoto?: string;
 };
 
 type GetColumnsProps = {
@@ -143,6 +145,12 @@ export const renderSubComponent = ({ row }: { row: any }) => {
             <ExpandedDetail label="Price" value={row.original.price ? `₹${row.original.price}`: 'N/A'} />
             <ExpandedDetail label="Item Name" value={row.original.itemName || 'N/A'} />
             <ExpandedDetail label="Item Type" value={row.original.itemType || 'N/A'} />
+            {row.original.coverPhoto && (
+              <ExpandedDetail 
+                label="Cover Photo" 
+                value={<Image src={row.original.coverPhoto} alt="Cover" width={100} height={150} className="rounded-md object-cover" />}
+              />
+            )}
             <ExpandedDetail label="Biography" value={row.original.biography} />
             <ExpandedDetail label="Aims & Scope" value={row.original.aimsAndScope} />
             <ExpandedDetail label="Unique Selling Points" value={row.original.usp} />

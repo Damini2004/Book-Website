@@ -54,6 +54,7 @@ const authorProposalSchema = z.object({
   figureCount: z.string().optional(),
   submissionDate: z.string().min(3, { message: "Please provide an estimated date." }),
   additionalInfo: z.string().optional(),
+  coverPhoto: z.string().optional(),
 });
 
 const adminCreateBookSchema = z.object({
@@ -66,6 +67,7 @@ const adminCreateBookSchema = z.object({
   bookType: z.enum(bookTypes as [string, ...string[]], { required_error: "You need to select a book type." }),
   submissionDate: z.string().min(3, { message: "Please provide an estimated date." }),
   additionalInfo: z.string().optional(),
+  coverPhoto: z.string().optional(),
   
   // Optional fields that are not shown to admin but need to be in schema
   designation: z.string().optional(),
@@ -91,7 +93,9 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firestore = useFirestore();
   const [sampleChapterDataUrl, setSampleChapterDataUrl] = useState<string | null>(null);
+  const [coverPhotoDataUrl, setCoverPhotoDataUrl] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const coverPhotoFileRef = useRef<HTMLInputElement>(null);
   const { user } = useUser();
   
   const isEditMode = !!initialData;
@@ -119,6 +123,7 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
     itemName: "",
     itemType: "",
     price: "",
+    coverPhoto: "",
   };
 
   const form = useForm<ProposalFormValues>({
@@ -147,6 +152,19 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
     }
   };
 
+  const handleCoverPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (loadEvent) => {
+        setCoverPhotoDataUrl(loadEvent.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+        setCoverPhotoDataUrl(null);
+    }
+  };
+
   async function onSubmit(data: ProposalFormValues) {
     setIsSubmitting(true);
     if (!firestore) {
@@ -165,6 +183,7 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
     const finalData = {
         ...data,
         sampleChapter: sampleChapterDataUrl,
+        coverPhoto: coverPhotoDataUrl,
     };
     
     const operation = isEditMode ? 'update' : 'create';
@@ -185,8 +204,12 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
         });
         form.reset(defaultValues);
         setSampleChapterDataUrl(null);
+        setCoverPhotoDataUrl(null);
         if (fileRef.current) {
             fileRef.current.value = '';
+        }
+        if (coverPhotoFileRef.current) {
+          coverPhotoFileRef.current.value = '';
         }
         onSuccess?.();
     }).catch(async (serverError) => {
@@ -262,17 +285,35 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
                 <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
                 )} />
             </div>
-            {user && <div className="grid md:grid-cols-3 gap-4">
-                <FormField control={form.control} name="itemName" render={({ field }) => (
-                    <FormItem><FormLabel>Item Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-                )} />
-                <FormField control={form.control} name="itemType" render={({ field }) => (
-                    <FormItem><FormLabel>Item Type</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-                )} />
-                <FormField control={form.control} name="price" render={({ field }) => (
-                    <FormItem><FormLabel>Price (₹)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-                )} />
-            </div>}
+            {user && (
+              <div className="space-y-4 pt-4 border-t mt-4">
+                <div className="grid md:grid-cols-3 gap-4">
+                    <FormField control={form.control} name="itemName" render={({ field }) => (
+                        <FormItem><FormLabel>Item Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                    )} />
+                    <FormField control={form.control} name="itemType" render={({ field }) => (
+                        <FormItem><FormLabel>Item Type</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                    )} />
+                    <FormField control={form.control} name="price" render={({ field }) => (
+                        <FormItem><FormLabel>Price (₹)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                    )} />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="cover-photo">Cover Photo</Label>
+                    <Input
+                        id="cover-photo"
+                        type="file"
+                        onChange={handleCoverPhotoChange}
+                        ref={coverPhotoFileRef}
+                        accept="image/*"
+                        suppressHydrationWarning
+                    />
+                    <p className="text-sm text-muted-foreground">
+                        Upload the book's cover image.
+                    </p>
+                </div>
+              </div>
+            )}
           </div>
         ))}
 
@@ -348,7 +389,7 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
           )} />
         ))}
 
-        {renderSection("10. Sample Chapter (Optional)", "You may attach 1-2 sample chapters to support evaluation.", (
+        {!user && renderSection("10. Sample Chapter (Optional)", "You may attach 1-2 sample chapters to support evaluation.", (
             <div className="space-y-2">
                 <Label htmlFor="sample-chapter">Upload File</Label>
                 <Input 

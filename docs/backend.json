@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "bookProposal": {
@@ -27,7 +28,8 @@
         "figureCount": { "type": "string", "description": "Estimated number of figures/tables (optional)." },
         "submissionDate": { "type": "string", "description": "Estimated manuscript submission date." },
         "sampleChapter": { "type": "string", "description": "Data URI of the uploaded sample chapter file (optional)." },
-        "additionalInfo": { "type": "string", "description": "Any additional information (optional)." }
+        "additionalInfo": { "type": "string", "description": "Any additional information (optional)." },
+        "coverPhoto": { "type": "string", "description": "Data URI of the uploaded cover photo file (optional)." }
       },
       "required": [
         "fullName", "designation", "institution", "email", "phone", "biography",
