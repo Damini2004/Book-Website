@@ -71,6 +71,7 @@ export default function Header() {
                                 "nav-link-underline px-4 py-2 text-base",
                                 isActive && "active"
                             )}
+                            suppressHydrationWarning
                             >
                             {link.label}
                         </Link>
