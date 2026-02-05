@@ -14,6 +14,7 @@ export const navLinks: NavLink[] = [
   { label: 'Top Seller', href: '/top-seller' },
   { label: 'Books', href: '/books' },
   { label: 'Author', href: '/author' },
+  { label: 'Book Proposal', href: '/book-proposal' },
   { label: 'Blog', href: '/news' },
   { label: 'Contact', href: '/contact' },
 ];
