@@ -49,7 +49,7 @@ export function AdminClient() {
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
         <div className="flex items-center gap-4">
           <Button asChild>
-            <Link href="/book-proposal">Create Proposal</Link>
+            <Link href="/book-proposal">Create Book</Link>
           </Button>
           <Button variant="outline" onClick={handleLogout}>
             Logout
