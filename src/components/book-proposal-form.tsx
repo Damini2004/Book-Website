@@ -7,7 +7,7 @@ import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { useState, useRef } from "react";
-import { useFirestore } from "@/firebase";
+import { useFirestore, useUser } from "@/firebase";
 import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { errorEmitter } from "@/firebase/error-emitter";
 import { FirestorePermissionError } from "@/firebase/errors";
@@ -39,9 +39,9 @@ const proposalFormSchema = z.object({
   biography: z.string().min(50, { message: "Biography must be at least 50 words." }).max(150, { message: "Biography must not exceed 150 words." }),
   bookTitle: z.string().min(5, { message: "Book title is required." }),
   bookSubtitle: z.string().optional(),
-  itemName: z.string().min(1, { message: "Item name is required." }),
-  itemType: z.string().min(1, { message: "Item type is required." }),
-  price: z.string().min(1, { message: "Price is required." }),
+  itemName: z.string().optional(),
+  itemType: z.string().optional(),
+  price: z.string().optional(),
   bookType: z.enum(bookTypes as [string, ...string[]], { required_error: "You need to select a book type." }),
   aimsAndScope: z.string().min(100, { message: "Aims & Scope must be at least 100 words." }).max(250, { message: "Aims & Scope must not exceed 250 words." }),
   usp: z.string().min(20, { message: "Please list at least a few selling points." }),
@@ -64,6 +64,7 @@ export function BookProposalForm() {
   const firestore = useFirestore();
   const [sampleChapterDataUrl, setSampleChapterDataUrl] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const { user } = useUser();
 
   const form = useForm<ProposalFormValues>({
     resolver: zodResolver(proposalFormSchema),
@@ -191,7 +192,7 @@ export function BookProposalForm() {
                 <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
                 )} />
             </div>
-            <div className="grid md:grid-cols-3 gap-4">
+            {user && <div className="grid md:grid-cols-3 gap-4">
                 <FormField control={form.control} name="itemName" render={({ field }) => (
                     <FormItem><FormLabel>Item Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
                 )} />
@@ -201,7 +202,7 @@ export function BookProposalForm() {
                 <FormField control={form.control} name="price" render={({ field }) => (
                     <FormItem><FormLabel>Price (₹)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
                 )} />
-            </div>
+            </div>}
           </div>
         ))}
 
@@ -218,7 +219,7 @@ export function BookProposalForm() {
           )} />
         ))}
         
-        {renderSection("4. Aims &amp; Scope", "Explain the purpose, key themes, and importance (150–250 words).", (
+        {renderSection("4. Aims & Scope", "Explain the purpose, key themes, and importance (150–250 words).", (
           <FormField control={form.control} name="aimsAndScope" render={({ field }) => (
             <FormItem><FormControl><Textarea rows={6} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
           )} />

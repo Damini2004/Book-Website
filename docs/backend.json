@@ -32,8 +32,7 @@
       "required": [
         "fullName", "designation", "institution", "email", "phone", "biography",
         "bookTitle", "bookType", "aimsAndScope", "usp", "targetAudience",
-        "toc", "wordCount", "pageCount", "submissionDate",
-        "itemName", "itemType", "price"
+        "toc", "wordCount", "pageCount", "submissionDate"
       ]
     }
   },
