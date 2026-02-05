@@ -29,6 +29,11 @@ export type BookProposal = {
   itemType?: string;
 };
 
+type GetColumnsProps = {
+    onEdit: (proposal: BookProposal) => void;
+    onDelete: (proposal: BookProposal) => void;
+}
+
 const ExpandedDetail = ({ label, value }: { label: string; value: React.ReactNode }) => (
   <div className="grid grid-cols-4 gap-2 text-sm">
     <strong className="col-span-1 text-right">{label}:</strong>
@@ -36,7 +41,7 @@ const ExpandedDetail = ({ label, value }: { label: string; value: React.ReactNod
   </div>
 );
 
-export const columns: ColumnDef<BookProposal>[] = [
+export const getColumns = ({ onEdit, onDelete }: GetColumnsProps): ColumnDef<BookProposal>[] => [
   {
     accessorKey: "fullName",
     header: ({ column }) => {
@@ -118,7 +123,12 @@ export const columns: ColumnDef<BookProposal>[] = [
               Copy proposal ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onEdit(proposal)}>
+                Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onDelete(proposal)} className="text-destructive focus:bg-destructive/10 focus:text-destructive">
+                Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

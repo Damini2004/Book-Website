@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useFirestore, useUser } from "@/firebase";
 import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { errorEmitter } from "@/firebase/error-emitter";
@@ -86,7 +86,7 @@ const adminCreateBookSchema = z.object({
 
 type ProposalFormValues = z.infer<typeof authorProposalSchema | typeof adminCreateBookSchema>;
 
-export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
+export function BookProposalForm({ initialData, onSuccess }: { initialData?: ProposalFormValues | null; onSuccess?: () => void }) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firestore = useFirestore();
@@ -94,34 +94,45 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const { user } = useUser();
   
+  const isEditMode = !!initialData;
   const proposalFormSchema = user ? adminCreateBookSchema : authorProposalSchema;
+
+  const defaultValues = {
+    fullName: "",
+    designation: "",
+    institution: "",
+    email: "",
+    phone: "",
+    orcid: "",
+    biography: "",
+    bookTitle: "",
+    bookSubtitle: "",
+    aimsAndScope: "",
+    usp: "",
+    targetAudience: [],
+    toc: "",
+    wordCount: "",
+    pageCount: "",
+    figureCount: "",
+    submissionDate: "",
+    additionalInfo: "",
+    itemName: "",
+    itemType: "",
+    price: "",
+  };
 
   const form = useForm<ProposalFormValues>({
     resolver: zodResolver(proposalFormSchema),
-    defaultValues: {
-      fullName: "",
-      designation: "",
-      institution: "",
-      email: "",
-      phone: "",
-      orcid: "",
-      biography: "",
-      bookTitle: "",
-      bookSubtitle: "",
-      aimsAndScope: "",
-      usp: "",
-      targetAudience: [],
-      toc: "",
-      wordCount: "",
-      pageCount: "",
-      figureCount: "",
-      submissionDate: "",
-      additionalInfo: "",
-      itemName: "",
-      itemType: "",
-      price: "",
-    },
+    defaultValues: initialData || defaultValues
   });
+  
+  useEffect(() => {
+    if (initialData) {
+      form.reset(initialData);
+    } else {
+      form.reset(defaultValues);
+    }
+  }, [initialData, form]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -148,28 +159,31 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
       return;
     }
 
-    const proposalRef = doc(collection(firestore, "bookProposals"));
-    
+    const proposalId = isEditMode ? (initialData as any).id : doc(collection(firestore, "bookProposals")).id;
+    const proposalRef = doc(firestore, "bookProposals", proposalId);
+
     const finalData = {
         ...data,
         sampleChapter: sampleChapterDataUrl,
     };
-
-    const isUserSubmission = !user;
-    const successTitle = isUserSubmission ? "Proposal Submitted!" : "Book Created!";
-    const successDescription = isUserSubmission
-      ? "Your book proposal has been submitted successfully! We will review it and get back to you shortly."
-      : "The new book entry has been created successfully.";
+    
+    const operation = isEditMode ? 'update' : 'create';
+    const successTitle = isEditMode ? "Book Updated!" : (user ? "Book Created!" : "Proposal Submitted!");
+    const successDescription = isEditMode 
+        ? "The book entry has been successfully updated." 
+        : (user 
+            ? "The new book entry has been created successfully." 
+            : "Your book proposal has been submitted successfully! We will review it and get back to you shortly.");
 
     setDoc(proposalRef, {
         ...finalData,
-        createdAt: serverTimestamp(),
-    }).then(() => {
+        ...(!isEditMode && { createdAt: serverTimestamp() })
+    }, { merge: true }).then(() => {
         toast({
             title: successTitle,
             description: successDescription,
         });
-        form.reset();
+        form.reset(defaultValues);
         setSampleChapterDataUrl(null);
         if (fileRef.current) {
             fileRef.current.value = '';
@@ -178,15 +192,15 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
     }).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
           path: proposalRef.path,
-          operation: 'create',
+          operation: operation,
           requestResourceData: finalData,
         });
         errorEmitter.emit('permission-error', permissionError);
         
         toast({
             variant: "destructive",
-            title: "Submission Failed",
-            description: serverError.message || "Could not save proposal. You may not have permissions.",
+            title: isEditMode ? "Update Failed" : "Submission Failed",
+            description: serverError.message || `Could not ${operation} proposal. You may not have permissions.`,
         });
     }).finally(() => {
         setIsSubmitting(false);
@@ -296,7 +310,7 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
                     <FormField key={item} control={form.control} name="targetAudience" render={({ field }) => (
                       <FormItem key={item} className="flex flex-row items-start space-x-3 space-y-0">
                         <FormControl><Checkbox checked={field.value?.includes(item)} onCheckedChange={(checked) => {
-                          return checked ? field.onChange([...field.value, item]) : field.onChange(field.value?.filter((value) => value !== item));
+                          return checked ? field.onChange([...(field.value || []), item]) : field.onChange(field.value?.filter((value) => value !== item));
                         }} suppressHydrationWarning /></FormControl>
                         <FormLabel className="font-normal">{item}</FormLabel>
                       </FormItem>
@@ -360,7 +374,7 @@ export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
 
         <Button type="submit" size="lg" className="w-full" disabled={isSubmitting} suppressHydrationWarning>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {user ? 'Create Book Entry' : 'Submit Proposal' }
+          {isEditMode ? 'Update Book Entry' : (user ? 'Create Book Entry' : 'Submit Proposal' )}
         </Button>
       </form>
     </Form>
