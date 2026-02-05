@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -62,11 +61,11 @@ export default function Header() {
         <div className="container mx-auto px-4">
             <div className="hidden lg:flex items-center justify-center h-16">
                  <div className="flex items-center space-x-2">
-                    {navLinks.map((link) => {
+                    {navLinks.map((link, index) => {
                       const isActive = pathname === link.href;
                       return (
                         <Link
-                            key={link.href}
+                            key={`${link.href}-${index}`}
                             href={link.href}
                             className={cn(
                                 "nav-link-underline px-4 py-2 text-base",
