@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -5,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useFirestore } from "@/firebase";
 import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { errorEmitter } from "@/firebase/error-emitter";
@@ -22,10 +23,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "./ui/checkbox";
-import { bookTypes, bookAudiences, bookCategories } from "@/lib/data";
+import { bookTypes, bookAudiences } from "@/lib/data";
 
 const proposalFormSchema = z.object({
   fullName: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -37,6 +39,9 @@ const proposalFormSchema = z.object({
   biography: z.string().min(50, { message: "Biography must be at least 50 words." }).max(150, { message: "Biography must not exceed 150 words." }),
   bookTitle: z.string().min(5, { message: "Book title is required." }),
   bookSubtitle: z.string().optional(),
+  itemName: z.string().min(1, { message: "Item name is required." }),
+  itemType: z.string().min(1, { message: "Item type is required." }),
+  price: z.string().min(1, { message: "Price is required." }),
   bookType: z.enum(bookTypes as [string, ...string[]], { required_error: "You need to select a book type." }),
   aimsAndScope: z.string().min(100, { message: "Aims & Scope must be at least 100 words." }).max(250, { message: "Aims & Scope must not exceed 250 words." }),
   usp: z.string().min(20, { message: "Please list at least a few selling points." }),
@@ -49,7 +54,6 @@ const proposalFormSchema = z.object({
   figureCount: z.string().optional(),
   submissionDate: z.string().min(3, { message: "Please provide an estimated date." }),
   additionalInfo: z.string().optional(),
-  sampleChapter: z.any().optional(),
 });
 
 type ProposalFormValues = z.infer<typeof proposalFormSchema>;
@@ -58,14 +62,33 @@ export function BookProposalForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firestore = useFirestore();
+  const [sampleChapterDataUrl, setSampleChapterDataUrl] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
   const form = useForm<ProposalFormValues>({
     resolver: zodResolver(proposalFormSchema),
     defaultValues: {
       fullName: "",
       email: "",
       targetAudience: [],
+      itemName: "",
+      itemType: "",
+      price: "",
     },
   });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (loadEvent) => {
+        setSampleChapterDataUrl(loadEvent.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+        setSampleChapterDataUrl(null);
+    }
+  };
 
   async function onSubmit(data: ProposalFormValues) {
     setIsSubmitting(true);
@@ -81,8 +104,13 @@ export function BookProposalForm() {
 
     const proposalRef = doc(collection(firestore, "bookProposals"));
     
-    setDoc(proposalRef, {
+    const finalData = {
         ...data,
+        sampleChapter: sampleChapterDataUrl,
+    };
+
+    setDoc(proposalRef, {
+        ...finalData,
         createdAt: serverTimestamp(),
     }).then(() => {
         toast({
@@ -90,11 +118,15 @@ export function BookProposalForm() {
             description: "Your book proposal has been submitted successfully! We will review it and get back to you shortly.",
         });
         form.reset();
+        setSampleChapterDataUrl(null);
+        if (fileRef.current) {
+            fileRef.current.value = '';
+        }
     }).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
           path: proposalRef.path,
           operation: 'create',
-          requestResourceData: data,
+          requestResourceData: finalData,
         });
         errorEmitter.emit('permission-error', permissionError);
         
@@ -149,14 +181,27 @@ export function BookProposalForm() {
           </div>
         ))}
         
-        {renderSection("2. Book Title &amp; Subtitle", "Provide a clear, descriptive title.", (
-          <div className="grid md:grid-cols-2 gap-4">
-            <FormField control={form.control} name="bookTitle" render={({ field }) => (
-              <FormItem><FormLabel>Book Title</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
-            <FormField control={form.control} name="bookSubtitle" render={({ field }) => (
-              <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
-            )} />
+        {renderSection("2. Book Details", "Provide a clear, descriptive title and other details.", (
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+                <FormField control={form.control} name="bookTitle" render={({ field }) => (
+                <FormItem><FormLabel>Book Title</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="bookSubtitle" render={({ field }) => (
+                <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+            </div>
+            <div className="grid md:grid-cols-3 gap-4">
+                <FormField control={form.control} name="itemName" render={({ field }) => (
+                    <FormItem><FormLabel>Item Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="itemType" render={({ field }) => (
+                    <FormItem><FormLabel>Item Type</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="price" render={({ field }) => (
+                    <FormItem><FormLabel>Price (₹)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
+                )} />
+            </div>
           </div>
         ))}
 
@@ -228,7 +273,25 @@ export function BookProposalForm() {
           )} />
         ))}
 
-        {renderSection("10. Additional Information (Optional)", "Include any prior work, collaborations, funding, or special requirements.", (
+        {renderSection("10. Sample Chapter (Optional)", "You may attach 1-2 sample chapters to support evaluation.", (
+            <div className="space-y-2">
+                <Label htmlFor="sample-chapter">Upload File</Label>
+                <Input 
+                    id="sample-chapter"
+                    type="file" 
+                    onChange={handleFileChange} 
+                    ref={fileRef}
+                    accept=".pdf,.doc,.docx,.txt" 
+                    suppressHydrationWarning 
+                />
+                <p className="text-sm text-muted-foreground">
+                    Attach 1-2 sample chapters (.pdf, .doc, .docx, .txt).
+                </p>
+            </div>
+        ))}
+
+
+        {renderSection("11. Additional Information (Optional)", "Include any prior work, collaborations, funding, or special requirements.", (
           <FormField control={form.control} name="additionalInfo" render={({ field }) => (
             <FormItem><FormControl><Textarea rows={4} {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
           )} />

@@ -14,6 +14,9 @@
         "biography": { "type": "string", "description": "A short biography of the author." },
         "bookTitle": { "type": "string", "description": "The title of the proposed book." },
         "bookSubtitle": { "type": "string", "description": "The subtitle of the proposed book (optional)." },
+        "itemName": { "type": "string", "description": "Item Name." },
+        "itemType": { "type": "string", "description": "Item Type." },
+        "price": { "type": "string", "description": "Price in Rupees." },
         "bookType": { "type": "string", "description": "The type of book." },
         "aimsAndScope": { "type": "string", "description": "The aims and scope of the book." },
         "usp": { "type": "string", "description": "Unique selling points of the book." },
@@ -23,12 +26,14 @@
         "pageCount": { "type": "string", "description": "Estimated page count." },
         "figureCount": { "type": "string", "description": "Estimated number of figures/tables (optional)." },
         "submissionDate": { "type": "string", "description": "Estimated manuscript submission date." },
+        "sampleChapter": { "type": "string", "description": "Data URI of the uploaded sample chapter file (optional)." },
         "additionalInfo": { "type": "string", "description": "Any additional information (optional)." }
       },
       "required": [
         "fullName", "designation", "institution", "email", "phone", "biography",
         "bookTitle", "bookType", "aimsAndScope", "usp", "targetAudience",
-        "toc", "wordCount", "pageCount", "submissionDate"
+        "toc", "wordCount", "pageCount", "submissionDate",
+        "itemName", "itemType", "price"
       ]
     }
   },
