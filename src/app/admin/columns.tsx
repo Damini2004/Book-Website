@@ -82,14 +82,13 @@ export const columns: ColumnDef<BookProposal>[] = [
   {
     id: "expand",
     cell: ({ row }) => {
-      const { toggleRowExpanded, getIsExpanded } = row;
       return (
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => toggleRowExpanded(!getIsExpanded())}
+          onClick={() => row.toggleExpanded(!row.getIsExpanded())}
         >
-          {getIsExpanded() ? (
+          {row.getIsExpanded() ? (
             <ChevronDown className="h-4 w-4" />
           ) : (
             <ChevronRight className="h-4 w-4" />
