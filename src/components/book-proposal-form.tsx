@@ -58,7 +58,7 @@ const proposalFormSchema = z.object({
 
 type ProposalFormValues = z.infer<typeof proposalFormSchema>;
 
-export function BookProposalForm() {
+export function BookProposalForm({ onSuccess }: { onSuccess?: () => void }) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firestore = useFirestore();
@@ -110,19 +110,26 @@ export function BookProposalForm() {
         sampleChapter: sampleChapterDataUrl,
     };
 
+    const isUserSubmission = !user;
+    const successTitle = isUserSubmission ? "Proposal Submitted!" : "Book Created!";
+    const successDescription = isUserSubmission
+      ? "Your book proposal has been submitted successfully! We will review it and get back to you shortly."
+      : "The new book entry has been created successfully.";
+
     setDoc(proposalRef, {
         ...finalData,
         createdAt: serverTimestamp(),
     }).then(() => {
         toast({
-            title: "Proposal Submitted!",
-            description: "Your book proposal has been submitted successfully! We will review it and get back to you shortly.",
+            title: successTitle,
+            description: successDescription,
         });
         form.reset();
         setSampleChapterDataUrl(null);
         if (fileRef.current) {
             fileRef.current.value = '';
         }
+        onSuccess?.();
     }).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
           path: proposalRef.path,
@@ -300,7 +307,7 @@ export function BookProposalForm() {
 
         <Button type="submit" size="lg" className="w-full" disabled={isSubmitting} suppressHydrationWarning>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Submit Proposal
+          {user ? 'Create Book Entry' : 'Submit Proposal' }
         </Button>
       </form>
     </Form>
