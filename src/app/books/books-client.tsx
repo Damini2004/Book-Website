@@ -10,6 +10,16 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Link from 'next/link';
 import { ShoppingCart, Heart, Search, Eye } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useMemo, useState } from "react";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { bookTypes } from "@/lib/data";
 
 // This is the book type from Firestore
 type Book = {
@@ -18,6 +28,7 @@ type Book = {
   fullName: string;
   price?: string;
   coverPhoto?: string;
+  bookType?: string;
 };
 
 const BookCard = ({ book }: { book: Book }) => {
@@ -68,6 +79,22 @@ export function BooksClient() {
     const firestore = useFirestore();
     const query = firestore ? collection(firestore, "bookProposals") : null;
     const { data: books, isLoading } = useCollection(query);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedBookType, setSelectedBookType] = useState("all");
+
+    const filteredBooks = useMemo(() => {
+        if (!books) return [];
+        return books.filter((book: Book) => {
+            const matchesSearch = searchTerm.toLowerCase() === "" ||
+                book.bookTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                book.fullName.toLowerCase().includes(searchTerm.toLowerCase());
+            
+            const matchesBookType = selectedBookType === "all" || book.bookType === selectedBookType;
+
+            return matchesSearch && matchesBookType;
+        });
+    }, [books, searchTerm, selectedBookType]);
+
 
     if (isLoading) {
         return (
@@ -90,18 +117,71 @@ export function BooksClient() {
         )
     }
 
-    if (!books || books.length === 0) {
-        return <p>No books found.</p>
+    const renderContent = () => {
+        if (!books || books.length === 0) {
+            return <p>No books found.</p>
+        }
+        if (filteredBooks.length === 0) {
+            return <p>No books found matching your criteria.</p>
+        }
+        
+        return (
+            <>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {filteredBooks.map((book) => (
+                        <BookCard key={book.id} book={book} />
+                    ))}
+                </div>
+                <Pagination />
+            </>
+        );
     }
     
     return (
         <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {books.map((book) => (
-                    <BookCard key={book.id} book={book} />
-                ))}
-            </div>
-            <Pagination />
+            <Card className="mb-8">
+                <CardContent className="p-4 flex flex-col md:flex-row items-center gap-4">
+                    <div className="relative w-full md:flex-grow">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input
+                            placeholder="Search by title or author..."
+                            className="pl-10 w-full"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+                    <Select onValueChange={setSelectedBookType} defaultValue="all">
+                        <SelectTrigger className="w-full md:w-[280px]">
+                            <SelectValue placeholder="Filter by book type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">All Book Types</SelectItem>
+                            {bookTypes.map((type) => (
+                                <SelectItem key={type} value={type}>{type}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </CardContent>
+            </Card>
+
+            {isLoading ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {[...Array(6)].map((_, i) => (
+                        <Card key={i} className="overflow-hidden">
+                            <div className="lg:flex">
+                                 <div className="relative h-80 lg:w-2/5 lg:h-auto min-h-[320px]">
+                                    <Skeleton className="h-full w-full" />
+                                 </div>
+                                 <CardContent className="p-6 flex flex-col justify-center lg:w-3/5 space-y-4">
+                                    <Skeleton className="h-4 w-1/4" />
+                                    <Skeleton className="h-8 w-3/4" />
+                                    <Skeleton className="h-4 w-1/2" />
+                                </CardContent>
+                            </div>
+                        </Card>
+                    ))}
+                </div>
+            ) : renderContent()}
         </>
     );
 }
