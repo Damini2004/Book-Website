@@ -3,8 +3,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Menu, X, Search, Facebook, Twitter, Instagram, Dribbble } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,12 +20,6 @@ import { cn } from "@/lib/utils";
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
 
   return (
     <header className="bg-background text-foreground">
@@ -55,8 +49,8 @@ export default function Header() {
             </div>
              <div className="md:col-span-4 flex justify-end">
                 <form className="relative w-full max-w-sm">
-                    <Input type="search" placeholder="Search" className="pl-4 pr-10 rounded-full" suppressHydrationWarning />
-                    <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full text-muted-foreground" suppressHydrationWarning>
+                    <Input type="search" placeholder="Search" className="pl-4 pr-10 rounded-full" />
+                    <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full text-muted-foreground">
                         <Search className="h-4 w-4" />
                     </Button>
                 </form>
@@ -68,7 +62,7 @@ export default function Header() {
         <div className="container mx-auto px-4">
             <div className="hidden lg:flex items-center justify-center h-16">
                  <div className="flex items-center space-x-2">
-                    {isClient && navLinks.map((link) => {
+                    {navLinks.map((link) => {
                       const isActive = pathname === link.href;
                       return (
                         <Link
@@ -91,7 +85,7 @@ export default function Header() {
                 </Link>
                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" suppressHydrationWarning>
+                    <Button variant="ghost" size="icon">
                       <Menu className="h-6 w-6" />
                       <span className="sr-only">Open menu</span>
                     </Button>
