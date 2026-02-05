@@ -18,6 +18,7 @@ type Book = {
   fullName: string;
   price?: string;
   submissionDate: string;
+  coverPhoto?: string;
   // Firestore data does not have a description property
 };
 
@@ -102,12 +103,14 @@ export function ComingSoonClient() {
                     </div>
                     <div className="lg:col-span-8 space-y-8">
                         {booksInSection.map((book) => {
-                        const image = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+                        const placeholder = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+                        const imageUrl = book.coverPhoto || placeholder?.imageUrl;
+                        const imageHint = book.coverPhoto ? book.bookTitle : placeholder?.imageHint;
                         return (
                             <Card key={book.id} className="group overflow-hidden">
                             <div className="md:flex">
                                 <div className="relative h-80 md:w-1/3 md:h-auto min-h-[250px]">
-                                {image && <Image src={image.imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                                {imageUrl && <Image src={imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={imageHint}/>}
                                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><ShoppingCart /></Button>
                                     <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><Heart /></Button>

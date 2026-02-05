@@ -16,17 +16,20 @@ type Book = {
     bookTitle: string;
     fullName: string;
     price?: string;
+    coverPhoto?: string;
 };
 
 const BookCard = ({ book, index }: { book: Book, index: number }) => {
-    const image = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+    const placeholder = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+    const imageUrl = book.coverPhoto || placeholder?.imageUrl;
+    const imageHint = book.coverPhoto ? book.bookTitle : placeholder?.imageHint;
     const isReversed = index === 3 || index === 4 || index === 5;
 
     return (
         <Card className="group overflow-hidden">
              <div className={`book-wrap ${isReversed ? 'flex-col-reverse' : ''}`}>
                 <div className="relative h-80">
-                    {image && <Image src={image.imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                    {imageUrl && <Image src={imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={imageHint}/>}
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <Button size="icon" variant="outline" suppressHydrationWarning><ShoppingCart /></Button>
                         <Button size="icon" variant="outline" suppressHydrationWarning><Heart /></Button>

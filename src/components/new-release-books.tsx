@@ -16,6 +16,7 @@ type Book = {
     bookTitle: string;
     fullName: string;
     price?: string;
+    coverPhoto?: string;
 };
 
 export function NewReleaseBooks() {
@@ -50,11 +51,13 @@ export function NewReleaseBooks() {
     return (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {books.map((book) => {
-                const image = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+                const placeholder = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+                const imageUrl = book.coverPhoto || placeholder?.imageUrl;
+                const imageHint = book.coverPhoto ? book.bookTitle : placeholder?.imageHint;
                 return (
                 <Card key={book.id} className="group overflow-hidden text-center">
                     <div className="relative h-80">
-                        {image && <Image src={image.imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                        {imageUrl && <Image src={imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={imageHint}/>}
                             <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><ShoppingCart /></Button>
                             <Button size="icon" variant="outline" className="text-white bg-transparent border-white/50 hover:bg-white/20"><Heart /></Button>

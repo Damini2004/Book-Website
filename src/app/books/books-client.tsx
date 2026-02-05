@@ -17,17 +17,19 @@ type Book = {
   bookTitle: string;
   fullName: string;
   price?: string;
-  // Firestore data does not have an image property, we'll use a placeholder
+  coverPhoto?: string;
 };
 
 const BookCard = ({ book }: { book: Book }) => {
-  // Using a generic placeholder image since Firestore data doesn't have one
-  const image = PlaceHolderImages.find((p) => p.id === 'book-new-1'); 
+  const placeholder = PlaceHolderImages.find((p) => p.id === 'book-new-1');
+  const imageUrl = book.coverPhoto || placeholder?.imageUrl;
+  const imageHint = book.coverPhoto ? book.bookTitle : placeholder?.imageHint;
+  
   return (
     <Card className="group overflow-hidden">
         <div className="lg:flex">
             <div className="relative h-80 lg:w-2/5 lg:h-auto min-h-[320px]">
-                {image && <Image src={image.imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                {imageUrl && <Image src={imageUrl} alt={book.bookTitle} fill className="object-cover" data-ai-hint={imageHint} />}
                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><ShoppingCart /></Button>
                     <Button size="icon" variant="outline" className="text-white bg-black/20 border-white/50 hover:bg-white/20"><Heart /></Button>
