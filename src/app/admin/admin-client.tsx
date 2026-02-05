@@ -32,6 +32,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { FirestorePermissionError } from "@/firebase/errors";
 import { errorEmitter } from "@/firebase/error-emitter";
+import { AdminSkeleton } from "./admin-skeleton";
 
 export function AdminClient() {
   const { user, loading: userLoading } = useUser();
@@ -106,7 +107,7 @@ export function AdminClient() {
 
 
   if (userLoading || proposalsLoading) {
-    return <div>Loading...</div>;
+    return <AdminSkeleton />;
   }
 
   if (!user) {
