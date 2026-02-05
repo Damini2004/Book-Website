@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Search, Facebook, Twitter, Instagram, Dribbble } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,12 @@ import { cn } from "@/lib/utils";
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   return (
     <header className="bg-background text-foreground">
@@ -62,7 +68,7 @@ export default function Header() {
         <div className="container mx-auto px-4">
             <div className="hidden lg:flex items-center justify-center h-16">
                  <div className="flex items-center space-x-2">
-                    {navLinks.map((link) => {
+                    {isClient && navLinks.map((link) => {
                       const isActive = pathname === link.href;
                       return (
                         <Link
@@ -72,7 +78,6 @@ export default function Header() {
                                 "nav-link-underline px-4 py-2 text-base",
                                 isActive && "active"
                             )}
-                            suppressHydrationWarning
                             >
                             {link.label}
                         </Link>
