@@ -134,8 +134,14 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
   useEffect(() => {
     if (initialData) {
       form.reset(initialData);
+      if (initialData.coverPhoto) {
+        setCoverPhotoDataUrl(initialData.coverPhoto);
+      } else {
+        setCoverPhotoDataUrl(null);
+      }
     } else {
       form.reset(defaultValues);
+      setCoverPhotoDataUrl(null);
     }
   }, [initialData, form]);
 
