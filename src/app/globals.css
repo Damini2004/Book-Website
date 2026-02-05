@@ -67,6 +67,17 @@
   }
 }
 
+@layer components {
+    .shimmer::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        transform: translateX(-100%);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+        animation: shimmer 1.5s infinite;
+    }
+}
+
 @layer utilities {
   .nav-link-underline {
     @apply relative text-muted-foreground no-underline transition-colors duration-200;
