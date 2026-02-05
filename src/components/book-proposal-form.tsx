@@ -5,12 +5,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useFirestore, useUser } from "@/firebase";
 import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { errorEmitter } from "@/firebase/error-emitter";
 import { FirestorePermissionError } from "@/firebase/errors";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -317,6 +318,31 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
                     <p className="text-sm text-muted-foreground">
                         Upload the book's cover image.
                     </p>
+                    {coverPhotoDataUrl && (
+                        <div className="mt-4 relative w-32 h-48">
+                            <Image
+                                src={coverPhotoDataUrl}
+                                alt="Cover photo preview"
+                                fill
+                                className="object-cover rounded-md"
+                            />
+                            <Button
+                                type="button"
+                                variant="destructive"
+                                size="icon"
+                                className="absolute -top-2 -right-2 h-6 w-6 z-10"
+                                onClick={() => {
+                                    setCoverPhotoDataUrl(null);
+                                    form.setValue("coverPhoto", "");
+                                    if (coverPhotoFileRef.current) {
+                                        coverPhotoFileRef.current.value = "";
+                                    }
+                                }}
+                            >
+                                <X className="h-4 w-4" />
+                            </Button>
+                        </div>
+                    )}
                 </div>
               </div>
             )}
@@ -427,3 +453,5 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
     </Form>
   );
 }
+
+    
