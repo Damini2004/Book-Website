@@ -1,10 +1,126 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, BookCheck, Telescope, PenSquare, GitPullRequest, FileCheck2, BookUser, Send, FileSignature, BookUp } from "lucide-react";
-import Link from "next/link";
-import { Mail } from "lucide-react";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, Mail, BookCheck, Send, FileSignature } from "lucide-react";
+import Link from "next/link";
 
 export default function BookProposalPage() {
+    const proposalRequirements = [
+    {
+      title: "1. Author / Editor Information",
+      content: [
+        "Full Name",
+        "Designation",
+        "Institution / Affiliation",
+        "Email Address",
+        "Phone Number",
+        "ORCID (optional)",
+        "Short Biography (100–150 words)",
+      ],
+      isList: true,
+    },
+    {
+      title: "2. Book Title & Subtitle",
+      content: ["Provide a clear, descriptive title and an informative subtitle."],
+      isList: false,
+    },
+    {
+      title: "3. Book Type",
+      content: [
+        "Textbook",
+        "Reference Book",
+        "Monograph",
+        "Edited Volume",
+        "Handbook",
+        "Lab/Practical Manual",
+        "Conference Proceedings",
+      ],
+      isList: true,
+      footer: "Choose one or specify if mixed/hybrid",
+    },
+    {
+      title: "4. Aims & Scope of the Book",
+      content: ["(150–250 words)", "Explain the purpose, key themes, importance, and expected contribution to the field."],
+      isList: false,
+    },
+    {
+      title: "5. Unique Selling Points (USP)",
+      content: [
+        "Covers recent advances in agricultural biotechnology",
+        "Integrates entomology with sustainable crop protection",
+        "Includes case studies, illustrations, or field data",
+        "Suitable for both researchers and students",
+      ],
+      isList: true,
+      header: "List 4–6 points explaining what makes the book valuable, such as:",
+    },
+    {
+      title: "6. Target Audience",
+      content: [
+        "Undergraduate / Postgraduate Students",
+        "Researchers & Scientists",
+        "Agricultural Universities",
+        "Farmers & Extension Professionals",
+        "Industry Practitioners",
+        "Government / NGO Bodies",
+      ],
+      isList: true,
+    },
+    {
+      title: "7. Proposed Table of Contents (TOC)",
+      content: [
+        "Chapter titles",
+        "Brief description (2–3 lines each)",
+        "Optional: section breakdown per chapter",
+      ],
+      isList: true,
+      header: "Include:",
+    },
+    {
+      title: "8. Expected Manuscript Length",
+      content: [
+        "Approx. number of words",
+        "Approx. number of pages",
+        "Number of figures / tables / images",
+      ],
+      isList: true,
+    },
+    {
+      title: "9. Timeline",
+      content: ["Estimated date of submission of complete manuscript"],
+      isList: true,
+    },
+    {
+      title: "10. Sample Chapters (Optional but Recommended)",
+      content: ["You may attach 1–2 sample chapters to support evaluation."],
+      isList: false,
+    },
+    {
+      title: "11. Additional Information (If Any)",
+      content: [
+        "Prior related work published",
+        "Collaborating institutions",
+        "Funding acknowledgments",
+        "Special requirements (illustrations, color plates, datasets, etc.)",
+      ],
+      isList: true,
+    },
+  ];
+
+  const reviewProcess = [
+      "Preliminary Editorial Screening",
+      "Expert Peer Review (Subject Specialist)",
+      "Proposal Approval",
+      "Signing of Author Agreement",
+      "Manuscript Development & Production",
+      "Final Publication (Print + eBook)"
+  ];
+  
   const whyPublishItems = [
     "Strong specialization in agriculture & entomology",
     "Peer-reviewed evaluation of book proposals",
@@ -15,20 +131,6 @@ export default function BookProposalPage() {
     "Fast-track publishing for institutional projects & proceedings"
   ];
 
-  const whatWeLookFor = [
-    { title: "Novelty", description: "Your proposal should demonstrate novelty or strong academic relevance.", icon: Telescope },
-    { title: "Structure", description: "We look for a well-defined objective and a structured chapter plan.", icon: BookCheck },
-    { title: "Audience", description: "A clear target audience must be identified.", icon: PenSquare },
-  ];
-  
-  const reviewProcess = [
-      "Preliminary Editorial Screening",
-      "Expert Peer Review (Subject Specialist)",
-      "Proposal Approval",
-      "Signing of Author Agreement",
-      "Manuscript Development & Production",
-      "Final Publication (Print + eBook)"
-  ];
 
   return (
     <div className="bg-secondary/30">
@@ -43,181 +145,84 @@ export default function BookProposalPage() {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl">Why Publish with MPH?</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {whyPublishItems.map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <Check className="h-5 w-5 text-primary mr-2 mt-0.5 shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl">What We Look For</CardTitle>
-              <CardDescription>
-                We encourage submissions that contribute to research, teaching, and innovation in agriculture and entomology.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {whatWeLookFor.map(item => (
-                <div key={item.title} className="text-center p-4 bg-background rounded-lg">
-                   <div className="flex justify-center mb-4">
-                    <div className="bg-accent/10 p-3 rounded-full">
-                      <item.icon className="h-7 w-7 text-accent" />
-                    </div>
-                  </div>
-                  <h3 className="font-semibold font-headline text-lg mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+            <Card className="lg:col-span-1">
+                <CardHeader>
+                    <CardTitle className="font-headline text-2xl">Why Publish with MPH?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-3">
+                        {whyPublishItems.map((item, index) => (
+                        <li key={index} className="flex items-start">
+                            <Check className="h-5 w-5 text-primary mr-2 mt-0.5 shrink-0" />
+                            <span className="text-muted-foreground">{item}</span>
+                        </li>
+                        ))}
+                    </ul>
+                </CardContent>
+            </Card>
+            <Card className="lg:col-span-2">
+                <CardHeader>
+                    <CardTitle className="font-headline text-3xl flex items-center gap-3">
+                        <FileSignature className="h-8 w-8 text-primary" />
+                        Book Proposal Requirements
+                    </CardTitle>
+                    <CardDescription>
+                        Authors submitting a book proposal are requested to include the following details. Click each section to expand.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                   <Accordion type="single" collapsible className="w-full">
+                        {proposalRequirements.map((req, index) => (
+                            <AccordionItem value={`item-${index}`} key={index}>
+                                <AccordionTrigger className="text-lg font-semibold text-left">{req.title}</AccordionTrigger>
+                                <AccordionContent className="pt-2 text-muted-foreground">
+                                    {req.header && <p className="mb-2">{req.header}</p>}
+                                    {req.isList ? (
+                                        <ul className="list-disc list-inside space-y-1">
+                                            {req.content.map((item, i) => <li key={i}>{item}</li>)}
+                                        </ul>
+                                    ) : (
+                                        req.content.map((item, i) => <p key={i} className={i === 0 && (item.startsWith('(') || item.startsWith('E')) ? 'italic' : ''}>{item}</p>)
+                                    )}
+                                    {req.footer && <p className="mt-2 text-sm italic">{req.footer}</p>}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                   </Accordion>
+                </CardContent>
+            </Card>
         </div>
         
-        <Card className="mb-16">
-            <CardHeader>
-                <CardTitle className="font-headline text-3xl flex items-center gap-3">
-                    <FileSignature className="h-8 w-8 text-primary" />
-                    Book Proposal Form – Required Information
-                </CardTitle>
-                <CardDescription>
-                    Authors submitting a book proposal are requested to include the following details:
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-8 text-muted-foreground">
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">1. Author / Editor Information</h3>
-                        <ul className="list-disc list-inside space-y-1">
-                            <li>Full Name</li>
-                            <li>Designation</li>
-                            <li>Institution / Affiliation</li>
-                            <li>Email Address</li>
-                            <li>Phone Number</li>
-                            <li>ORCID (optional)</li>
-                            <li>Short Biography (100–150 words)</li>
-                        </ul>
+        <Card>
+            <CardContent className="p-8 grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
+                      <Send className="h-6 w-6 text-primary"/> How to Submit Your Proposal
+                    </h3>
+                    <p className="mb-4 text-muted-foreground">Email your completed book proposal to:</p>
+                    <div className="flex items-center gap-2">
+                       <Mail className="h-5 w-5 text-primary" />
+                       <a href="mailto:books@malhotrapublishinghouse.org" className="text-primary font-medium hover:underline">
+                           books@malhotrapublishinghouse.org
+                       </a>
                     </div>
-                     <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">2. Book Title & Subtitle</h3>
-                        <p>Provide a clear, descriptive title and an informative subtitle.</p>
-                    </div>
-                     <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">3. Book Type</h3>
-                        <p>Choose one or specify if mixed/hybrid:</p>
-                        <ul className="list-disc list-inside space-y-1 mt-2">
-                          <li>Textbook</li>
-                          <li>Reference Book</li>
-                          <li>Monograph</li>
-                          <li>Edited Volume</li>
-                          <li>Handbook</li>
-                          <li>Lab/Practical Manual</li>
-                          <li>Conference Proceedings</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">4. Aims & Scope of the Book</h3>
-                        <p className="italic">(150–250 words)</p>
-                        <p>Explain the purpose, key themes, importance, and expected contribution to the field.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">5. Unique Selling Points (USP)</h3>
-                         <p>List 4–6 points explaining what makes the book valuable, such as:</p>
-                         <ul className="list-disc list-inside space-y-1 mt-2">
-                            <li>Covers recent advances in agricultural biotechnology</li>
-                            <li>Integrates entomology with sustainable crop protection</li>
-                            <li>Includes case studies, illustrations, or field data</li>
-                            <li>Suitable for both researchers and students</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">6. Target Audience</h3>
-                        <ul className="list-disc list-inside space-y-1">
-                            <li>Undergraduate / Postgraduate Students</li>
-                            <li>Researchers & Scientists</li>
-                            <li>Agricultural Universities</li>
-                            <li>Farmers & Extension Professionals</li>
-                            <li>Industry Practitioners</li>
-                            <li>Government / NGO Bodies</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">7. Proposed Table of Contents (TOC)</h3>
-                        <p>Include:</p>
-                        <ul className="list-disc list-inside space-y-1 mt-2">
-                            <li>Chapter titles</li>
-                            <li>Brief description (2–3 lines each)</li>
-                            <li>Optional: section breakdown per chapter</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">8. Expected Manuscript Length</h3>
-                         <ul className="list-disc list-inside space-y-1">
-                            <li>Approx. number of words</li>
-                            <li>Approx. number of pages</li>
-                            <li>Number of figures / tables / images</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">9. Timeline</h3>
-                        <ul className="list-disc list-inside space-y-1">
-                            <li>Estimated date of submission of complete manuscript</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">10. Sample Chapters (Optional but Recommended)</h3>
-                        <p>You may attach 1–2 sample chapters to support evaluation.</p>
-                    </div>
-                     <div>
-                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">11. Additional Information (If Any)</h3>
-                        <ul className="list-disc list-inside space-y-1">
-                            <li>Prior related work published</li>
-                            <li>Collaborating institutions</li>
-                            <li>Funding acknowledgments</li>
-                            <li>Special requirements (illustrations, color plates, datasets, etc.)</li>
-                        </ul>
-                    </div>
+                    <p className="mt-2 text-muted-foreground">or upload via the submission form on this page.</p>
                 </div>
-
-                <div className="grid md:grid-cols-2 gap-8 pt-8 border-t">
-                    <div>
-                        <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
-                          <Send className="h-6 w-6 text-primary"/> How to Submit Your Proposal
-                        </h3>
-                        <p className="mb-4">Email your completed book proposal to:</p>
-                        <div className="flex items-center gap-2">
-                           <Mail className="h-5 w-5 text-primary" />
-                           <a href="mailto:books@malhotrapublishinghouse.org" className="text-primary font-medium hover:underline">
-                               books@malhotrapublishinghouse.org
-                           </a>
-                        </div>
-                        <p className="mt-2">or upload via the submission form on this page.</p>
-                    </div>
-                     <div>
-                        <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
-                           <BookCheck className="h-6 w-6 text-primary" /> Review & Acceptance Process
-                        </h3>
-                        <ol className="space-y-2 list-decimal list-outside pl-5 mt-4">
-                            {reviewProcess.map((item) => (
-                                <li key={item}>
-                                    {item}
-                                </li>
-                            ))}
-                        </ol>
-                        <p className="mt-4 text-sm">Authors receive continuous editorial and production support throughout the process.</p>
-                    </div>
+                 <div>
+                    <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
+                       <BookCheck className="h-6 w-6 text-primary" /> Review & Acceptance Process
+                    </h3>
+                    <ol className="space-y-2 list-decimal list-outside pl-5 mt-4 text-muted-foreground">
+                        {reviewProcess.map((item) => (
+                            <li key={item}>
+                                {item}
+                            </li>
+                        ))}
+                    </ol>
+                    <p className="mt-4 text-sm text-muted-foreground">Authors receive continuous editorial and production support throughout the process.</p>
                 </div>
-
             </CardContent>
         </Card>
-
       </div>
     </div>
   );
