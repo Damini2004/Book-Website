@@ -7,7 +7,7 @@ import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { useFirestore, useUser } from "@/firebase";
+import { useFirestore } from "@/firebase";
 import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { errorEmitter } from "@/firebase/error-emitter";
 import { FirestorePermissionError } from "@/firebase/errors";
@@ -89,7 +89,7 @@ const adminCreateBookSchema = z.object({
 
 type ProposalFormValues = z.infer<typeof authorProposalSchema | typeof adminCreateBookSchema>;
 
-export function BookProposalForm({ initialData, onSuccess }: { initialData?: ProposalFormValues | null; onSuccess?: () => void }) {
+export function BookProposalForm({ initialData, onSuccess, isAdminView }: { initialData?: ProposalFormValues | null; onSuccess?: () => void; isAdminView?: boolean }) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firestore = useFirestore();
@@ -97,10 +97,9 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
   const [coverPhotoDataUrl, setCoverPhotoDataUrl] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const coverPhotoFileRef = useRef<HTMLInputElement>(null);
-  const { user } = useUser();
   
   const isEditMode = !!initialData;
-  const proposalFormSchema = user ? adminCreateBookSchema : authorProposalSchema;
+  const proposalFormSchema = isAdminView ? adminCreateBookSchema : authorProposalSchema;
 
   const defaultValues = {
     fullName: "",
@@ -194,10 +193,10 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
     };
     
     const operation = isEditMode ? 'update' : 'create';
-    const successTitle = isEditMode ? "Book Updated!" : (user ? "Book Created!" : "Proposal Submitted!");
+    const successTitle = isEditMode ? "Book Updated!" : (isAdminView ? "Book Created!" : "Proposal Submitted!");
     const successDescription = isEditMode 
         ? "The book entry has been successfully updated." 
-        : (user 
+        : (isAdminView 
             ? "The new book entry has been created successfully." 
             : "Your book proposal has been submitted successfully! We will review it and get back to you shortly.");
 
@@ -250,12 +249,12 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {renderSection("1. Author / Editor Information", user ? "Enter the author's name." : "Provide your professional details.", (
+        {renderSection("1. Author / Editor Information", isAdminView ? "Enter the author's name." : "Provide your professional details.", (
           <div className="grid md:grid-cols-2 gap-4">
             <FormField control={form.control} name="fullName" render={({ field }) => (
               <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
             )} />
-            {!user && (
+            {!isAdminView && (
               <>
                 <FormField control={form.control} name="designation" render={({ field }) => (
                   <FormItem><FormLabel>Designation</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
@@ -292,7 +291,7 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
                 <FormItem><FormLabel>Subtitle (optional)</FormLabel><FormControl><Input {...field} suppressHydrationWarning /></FormControl><FormMessage /></FormItem>
                 )} />
             </div>
-            {user && (
+            {isAdminView && (
               <div className="space-y-4 pt-4 border-t mt-4">
                 <div className="grid md:grid-cols-3 gap-4">
                     <FormField control={form.control} name="itemName" render={({ field }) => (
@@ -362,7 +361,7 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
           )} />
         ))}
         
-        {!user && (
+        {!isAdminView && (
           <>
             {renderSection("4. Aims & Scope", "Explain the purpose, key themes, and importance (150–250 words).", (
               <FormField control={form.control} name="aimsAndScope" render={({ field }) => (
@@ -421,7 +420,7 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
           )} />
         ))}
 
-        {!user && renderSection("10. Sample Chapter (Optional)", "You may attach 1-2 sample chapters to support evaluation.", (
+        {!isAdminView && renderSection("10. Sample Chapter (Optional)", "You may attach 1-2 sample chapters to support evaluation.", (
             <div className="space-y-2">
                 <Label htmlFor="sample-chapter">Upload File</Label>
                 <Input 
@@ -447,11 +446,9 @@ export function BookProposalForm({ initialData, onSuccess }: { initialData?: Pro
 
         <Button type="submit" size="lg" className="w-full" disabled={isSubmitting} suppressHydrationWarning>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isEditMode ? 'Update Book Entry' : (user ? 'Create Book Entry' : 'Submit Proposal' )}
+          {isEditMode ? 'Update Book Entry' : (isAdminView ? 'Create Book Entry' : 'Submit Proposal' )}
         </Button>
       </form>
     </Form>
   );
 }
-
-    
