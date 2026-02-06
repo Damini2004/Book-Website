@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, BookCheck, Telescope, PenSquare, GitPullRequest, FileCheck2, BookUser, Milestone, Send, FileSignature, BookUp } from "lucide-react";
+import { Check, BookCheck, Telescope, PenSquare, GitPullRequest, FileCheck2, BookUser, Send, FileSignature, BookUp } from "lucide-react";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { BookProposalClient } from "./book-proposal-client";
@@ -23,12 +23,12 @@ export default function BookProposalPage() {
   ];
   
   const reviewProcess = [
-      { title: "Preliminary Editorial Screening", icon: Send },
-      { title: "Expert Peer Review", icon: BookUser },
-      { title: "Proposal Approval", icon: FileCheck2 },
-      { title: "Signing of Author Agreement", icon: FileSignature },
-      { title: "Manuscript Development & Production", icon: GitPullRequest },
-      { title: "Final Publication (Print + eBook)", icon: BookUp }
+      "Preliminary Editorial Screening",
+      "Expert Peer Review (Subject Specialist)",
+      "Proposal Approval",
+      "Signing of Author Agreement",
+      "Manuscript Development & Production",
+      "Final Publication (Print + eBook)"
   ];
 
   return (
@@ -84,108 +84,135 @@ export default function BookProposalPage() {
         
         <Card className="mb-16">
             <CardHeader>
-                <CardTitle className="font-headline text-3xl">Book Proposal Guidelines</CardTitle>
+                <CardTitle className="font-headline text-3xl flex items-center gap-3">
+                    <FileSignature className="h-8 w-8 text-primary" />
+                    Book Proposal Form – Required Information
+                </CardTitle>
                 <CardDescription>
-                    Authors submitting a book proposal are requested to include the following details to help us with the evaluation process.
+                    Authors submitting a book proposal are requested to include the following details:
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8 text-muted-foreground">
-                <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-6">
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">1. Author / Editor Information</h3>
-                            <ul className="list-disc list-inside space-y-1">
-                                <li>Full Name</li>
-                                <li>Designation</li>
-                                <li>Institution / Affiliation</li>
-                                <li>Email Address</li>
-                                <li>Phone Number</li>
-                                <li>ORCID (optional)</li>
-                                <li>Short Biography (100–150 words)</li>
-                            </ul>
-                        </div>
-                         <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">2. Book Title & Subtitle</h3>
-                            <p>Provide a clear, descriptive title and an informative subtitle.</p>
-                        </div>
-                         <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">3. Book Type</h3>
-                            <p>Choose one: Textbook, Reference Book, Monograph, Edited Volume, Handbook, Lab/Practical Manual, or Conference Proceedings.</p>
-                        </div>
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">4. Aims & Scope of the Book</h3>
-                            <p>Explain the purpose, key themes, importance, and expected contribution to the field (150–250 words).</p>
-                        </div>
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">5. Unique Selling Points (USP)</h3>
-                             <ul className="list-disc list-inside space-y-1">
-                                <li>List 4–6 points explaining what makes the book valuable.</li>
-                                <li>e.g., Covers recent advances in agricultural biotechnology.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">6. Target Audience</h3>
-                            <ul className="list-disc list-inside space-y-1">
-                                <li>Undergraduate / Postgraduate Students</li>
-                                <li>Researchers & Scientists</li>
-                                <li>Agricultural Universities</li>
-                                <li>Farmers & Extension Professionals</li>
-                                <li>Industry Practitioners</li>
-                                <li>Government / NGO Bodies</li>
-                            </ul>
-                        </div>
+                <div className="space-y-6">
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">1. Author / Editor Information</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                            <li>Full Name</li>
+                            <li>Designation</li>
+                            <li>Institution / Affiliation</li>
+                            <li>Email Address</li>
+                            <li>Phone Number</li>
+                            <li>ORCID (optional)</li>
+                            <li>Short Biography (100–150 words)</li>
+                        </ul>
                     </div>
-                     <div className="space-y-6">
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">7. Proposed Table of Contents (TOC)</h3>
-                            <p>Include chapter titles and brief descriptions (2–3 lines each).</p>
-                        </div>
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">8. Expected Manuscript Length</h3>
-                             <ul className="list-disc list-inside space-y-1">
-                                <li>Approx. number of words</li>
-                                <li>Approx. number of pages</li>
-                                <li>Number of figures / tables / images</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">9. Timeline</h3>
-                            <p>Estimated date of submission of complete manuscript.</p>
-                        </div>
-                         <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">10. Sample Chapters (Optional)</h3>
-                            <p>You may attach 1–2 sample chapters to support evaluation.</p>
-                        </div>
-                         <div>
-                            <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">11. Additional Information</h3>
-                            <p>Include prior related work, collaborating institutions, funding, or special requirements.</p>
-                        </div>
+                     <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">2. Book Title & Subtitle</h3>
+                        <p>Provide a clear, descriptive title and an informative subtitle.</p>
+                    </div>
+                     <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">3. Book Type</h3>
+                        <p>Choose one or specify if mixed/hybrid:</p>
+                        <ul className="list-disc list-inside space-y-1 mt-2">
+                          <li>Textbook</li>
+                          <li>Reference Book</li>
+                          <li>Monograph</li>
+                          <li>Edited Volume</li>
+                          <li>Handbook</li>
+                          <li>Lab/Practical Manual</li>
+                          <li>Conference Proceedings</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">4. Aims & Scope of the Book</h3>
+                        <p className="italic">(150–250 words)</p>
+                        <p>Explain the purpose, key themes, importance, and expected contribution to the field.</p>
+                    </div>
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">5. Unique Selling Points (USP)</h3>
+                         <p>List 4–6 points explaining what makes the book valuable, such as:</p>
+                         <ul className="list-disc list-inside space-y-1 mt-2">
+                            <li>Covers recent advances in agricultural biotechnology</li>
+                            <li>Integrates entomology with sustainable crop protection</li>
+                            <li>Includes case studies, illustrations, or field data</li>
+                            <li>Suitable for both researchers and students</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">6. Target Audience</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                            <li>Undergraduate / Postgraduate Students</li>
+                            <li>Researchers & Scientists</li>
+                            <li>Agricultural Universities</li>
+                            <li>Farmers & Extension Professionals</li>
+                            <li>Industry Practitioners</li>
+                            <li>Government / NGO Bodies</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">7. Proposed Table of Contents (TOC)</h3>
+                        <p>Include:</p>
+                        <ul className="list-disc list-inside space-y-1 mt-2">
+                            <li>Chapter titles</li>
+                            <li>Brief description (2–3 lines each)</li>
+                            <li>Optional: section breakdown per chapter</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">8. Expected Manuscript Length</h3>
+                         <ul className="list-disc list-inside space-y-1">
+                            <li>Approx. number of words</li>
+                            <li>Approx. number of pages</li>
+                            <li>Number of figures / tables / images</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">9. Timeline</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                            <li>Estimated date of submission of complete manuscript</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">10. Sample Chapters (Optional but Recommended)</h3>
+                        <p>You may attach 1–2 sample chapters to support evaluation.</p>
+                    </div>
+                     <div>
+                        <h3 className="font-headline text-lg font-semibold mb-2 text-foreground">11. Additional Information (If Any)</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                            <li>Prior related work published</li>
+                            <li>Collaborating institutions</li>
+                            <li>Funding acknowledgments</li>
+                            <li>Special requirements (illustrations, color plates, datasets, etc.)</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8 pt-8 border-t">
                     <div>
-                        <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground">How to Submit</h3>
-                        <p className="mb-4">You can use the submission form on this page or email your completed proposal to:</p>
+                        <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
+                          <Send className="h-6 w-6 text-primary"/> How to Submit Your Proposal
+                        </h3>
+                        <p className="mb-4">Email your completed book proposal to:</p>
                         <div className="flex items-center gap-2">
                            <Mail className="h-5 w-5 text-primary" />
                            <a href="mailto:books@malhotrapublishinghouse.org" className="text-primary font-medium hover:underline">
                                books@malhotrapublishinghouse.org
                            </a>
                         </div>
+                        <p className="mt-2">or upload via the submission form on this page.</p>
                     </div>
                      <div>
-                        <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground">Review & Acceptance Process</h3>
-                        <ul className="space-y-3">
+                        <h3 className="font-headline text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
+                           <BookCheck className="h-6 w-6 text-primary" /> Review & Acceptance Process
+                        </h3>
+                        <ol className="space-y-2 list-decimal list-outside pl-5 mt-4">
                             {reviewProcess.map((item) => (
-                                <li key={item.title} className="flex items-center">
-                                    <div className="bg-primary/10 p-2 rounded-full mr-3">
-                                        <item.icon className="h-5 w-5 text-primary" />
-                                    </div>
-                                    <span>{item.title}</span>
+                                <li key={item}>
+                                    {item}
                                 </li>
                             ))}
-                        </ul>
+                        </ol>
+                        <p className="mt-4 text-sm">Authors receive continuous editorial and production support throughout the process.</p>
                     </div>
                 </div>
 
