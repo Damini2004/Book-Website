@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Check, BookCheck, Telescope, PenSquare, GitPullRequest, FileCheck2, BookUser, Send, FileSignature, BookUp } from "lucide-react";
 import Link from "next/link";
 import { Mail } from "lucide-react";
-import { BookProposalClient } from "./book-proposal-client";
 
 
 export default function BookProposalPage() {
@@ -218,8 +217,6 @@ export default function BookProposalPage() {
 
             </CardContent>
         </Card>
-
-        <BookProposalClient />
 
       </div>
     </div>
