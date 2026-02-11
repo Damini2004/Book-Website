@@ -82,7 +82,7 @@ export default function AboutPage() {
 
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="max-w-7xl mx-auto space-y-12">
 
             {/* Intro Section */}
             <div className="text-center">
