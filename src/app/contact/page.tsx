@@ -13,22 +13,22 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: "Address",
-      content: "198 West 21th Street, Suite 721 New York NY 10016",
+      content: "New Delhi, India",
     },
     {
       icon: Phone,
-      title: "Phone",
-      content: <a href="tel://1234567920" className="hover:text-primary">+ 1235 2355 98</a>,
+      title: "Contact",
+      content: "Phone / WhatsApp",
     },
     {
       icon: Mail,
       title: "Email",
-      content: <a href="mailto:info@yoursite.com" className="hover:text-primary">info@yoursite.com</a>,
+      content: <a href="mailto:info@mph.net.in.org" className="hover:text-primary">info@mph.net.in.org</a>,
     },
     {
       icon: Globe,
       title: "Website",
-      content: <a href="#" className="hover:text-primary">yoursite.com</a>,
+      content: <a href="#" className="hover:text-primary">malhotrapublishinghouse.org</a>,
     },
   ];
 

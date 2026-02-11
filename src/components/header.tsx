@@ -42,8 +42,8 @@ export default function Header() {
             </div>
             <div className="md:col-span-4 text-center my-4 md:my-0">
                 <Link href="/" className="font-headline text-2xl font-bold">
-                    Publishing <span className="text-primary">Company</span>
-                    <small className="block text-sm font-normal text-muted-foreground">Book Publishing Company</small>
+                    Malhotra Publishing <span className="text-primary">House</span>
+                    <small className="block text-sm font-normal text-muted-foreground">Publisher of Agriculture & Entomology Journals</small>
                 </Link>
             </div>
              <div className="md:col-span-4 flex justify-end">
@@ -80,7 +80,7 @@ export default function Header() {
             </div>
             <div className="lg:hidden flex justify-between items-center h-16">
                  <Link href="/" className="font-headline text-xl font-bold">
-                    Publishing <span className="text-primary">Company</span>
+                    Malhotra Publishing <span className="text-primary">House</span>
                 </Link>
                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                   <SheetTrigger asChild>
