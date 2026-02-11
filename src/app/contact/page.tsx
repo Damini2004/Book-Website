@@ -23,7 +23,7 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      content: <a href="mailto:info@mph.net.in.org" className="hover:text-primary">info@mph.net.in.org</a>,
+      content: <a href="mailto:books@malhotrapublishinghouse.org" className="hover:text-primary">books@malhotrapublishinghouse.org</a>,
     },
     {
       icon: Globe,

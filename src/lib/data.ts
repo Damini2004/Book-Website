@@ -75,7 +75,7 @@ export const footerContact = {
     title: "Have a Question?",
     contacts: [
         { icon: Globe, text: "malhotrapublishinghouse.org", href: "#" },
-        { icon: Mail, text: "info@mph.net.in.org", href: "mailto:info@mph.net.in.org" },
+        { icon: Mail, text: "books@malhotrapublishinghouse.org", href: "mailto:books@malhotrapublishinghouse.org" },
         { icon: Phone, text: "Phone/WhatsApp", href: "#" },
         { icon: MapPin, text: "India", href: "#" }
     ]
