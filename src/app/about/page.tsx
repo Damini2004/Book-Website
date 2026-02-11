@@ -125,7 +125,7 @@ export default function AboutPage() {
             </Card>
 
             {/* Our Journals Section */}
-            <Card>
+            <Card className="bg-primary/5 border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 font-headline text-3xl">
                   <Bug className="h-8 w-8 text-primary" /> Our Journals
